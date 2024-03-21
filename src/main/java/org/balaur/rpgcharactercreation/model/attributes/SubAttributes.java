@@ -16,15 +16,15 @@ public class SubAttributes {
     private int training;
     private int merchant;
 
-    public SubAttributes(int combat, int health, int speed, int command, int morale, int magery, int resistance, int training, int merchant) {
-        this.combat = combat;
-        this.health = health;
-        this.speed = speed;
-        this.command = command;
-        this.morale = morale;
-        this.magery = magery;
-        this.resistance = resistance;
-        this.training = training;
-        this.merchant = merchant;
+    public SubAttributes() {
+        combat = combat;
+        health = health;
+        speed = speed;
+        command = command;
+        morale = morale;
+        magery = magery;
+        resistance = resistance;
+        training = training;
+        merchant = merchant;
     }
 }
