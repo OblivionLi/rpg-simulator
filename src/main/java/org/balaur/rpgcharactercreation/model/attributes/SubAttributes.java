@@ -8,8 +8,8 @@ import org.balaur.rpgcharactercreation.util.AttributesConsts;
 @Setter
 public class SubAttributes {
     // main sub attributes
-    private int combat;
-    private int health;
+    private int combat = AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE;
+    private int health = AttributesConsts.HEALTH_STARTING_VALUE;
     private int speed;
     private int command; // command radius
     private int morale;
@@ -21,7 +21,7 @@ public class SubAttributes {
     // ~ sub-sub attributes that can't be changed directly but indirectly by the main sub attributes
     // for STR specific
     private int lifeRegeneration;
-    private int lifeRegenerationTimer; // in seconds
+    private float lifeRegenerationTimer = AttributesConsts.LIFE_REGEN_TIMER_STARTING_VALUE; // in seconds
 
     // for DEX specific
     private int armor;
@@ -40,9 +40,11 @@ public class SubAttributes {
     public SubAttributes() {
     }
 
-    public void increaseStatsOnLevelUp() {
-        health += AttributesConsts.INCREMENT_HEALTH_ON_LEVEL_UP;
-        mana += AttributesConsts.INCREMENT_MANA_ON_LEVEL_UP;
+    public void increaseStatsOnLevelUp(int levels) {
+        while (levels-- != 0) {
+            health += AttributesConsts.INCREMENT_HEALTH_ON_LEVEL_UP;
+            mana += AttributesConsts.INCREMENT_MANA_ON_LEVEL_UP;
+        }
     }
 
     public void updateStrengthRelatedAttributes(int strength) {
@@ -54,11 +56,11 @@ public class SubAttributes {
     }
 
     private void calculateLifeRegenerationTimer(int strength) {
-        lifeRegenerationTimer -= strength / AttributesConsts.LIFE_REGEN_TIMER_DIVISOR * AttributesConsts.LIFE_REGEN_TIMER_REDUCTION;
+        lifeRegenerationTimer -= (float) strength / AttributesConsts.LIFE_REGEN_TIMER_DIVISOR * AttributesConsts.LIFE_REGEN_TIMER_REDUCTION;
     }
 
     private void calculateHealth(int strength) {
-        health += AttributesConsts.HEALTH_STARTING_VALUE + strength * AttributesConsts.HEALTH_MULTIPLIER;
+        health += strength * AttributesConsts.HEALTH_MULTIPLIER;
     }
 
     private void calculateLifeRegeneration(int strength) {
@@ -66,7 +68,7 @@ public class SubAttributes {
     }
 
     private void calculateCombat(int strength) {
-        combat += AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE + AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE + strength / AttributesConsts.COMBAT_DIVISOR;
+        combat += strength / AttributesConsts.COMBAT_DIVISOR;
     }
 
     public void updateDexterityRelatedAttributes(int dexterity) {
