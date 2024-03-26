@@ -25,6 +25,7 @@ public class MainAttributes {
         subAttributes.updateDexterityRelatedAttributes(this.dexterity);
         subAttributes.updateIntelligenceRelatedAttributes(this.intelligence, troopXP);
         subAttributes.updateCharismaRelatedAttributes(this.charisma);
+        subAttributes.updateResistances(subAttributes.getResistance(), subAttributes.getArmor());
     }
 
     public void increaseStrength(int strength) {

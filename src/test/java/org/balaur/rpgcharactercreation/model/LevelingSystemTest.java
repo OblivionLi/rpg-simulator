@@ -1,5 +1,6 @@
-package org.balaur.rpgcharactercreation.model.leveling;
+package org.balaur.rpgcharactercreation.model;
 
+import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

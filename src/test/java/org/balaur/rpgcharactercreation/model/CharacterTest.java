@@ -1,7 +1,5 @@
-package org.balaur.rpgcharactercreation.model.races;
+package org.balaur.rpgcharactercreation.model;
 
-import org.balaur.rpgcharactercreation.model.CharacterFactory;
-import org.balaur.rpgcharactercreation.model.RPGCharacter;
 import org.balaur.rpgcharactercreation.model.races.human.HumanFactory;
 import org.balaur.rpgcharactercreation.util.AttributesConsts;
 import org.junit.jupiter.api.Test;
@@ -119,10 +117,92 @@ class CharacterTest {
         int newLifeReg = currentLifeReg + newStrength / AttributesConsts.LIFE_REGEN_DIVISOR;
         assertEquals(newLifeReg, humanCharacter.getSubAttributes().getLifeRegeneration());
 
-        System.out.printf("========= CHECK LIFE REG TIMER: %f, new str: %d", currentLifeRegTimer, newStrength);
         float newLifeRegTimer = currentLifeRegTimer - (float) newStrength / AttributesConsts.LIFE_REGEN_TIMER_DIVISOR * AttributesConsts.LIFE_REGEN_TIMER_REDUCTION;
-        System.out.printf("========= CHECK NEW LIFE REG TIMER: %f", newLifeRegTimer);
         assertEquals(newLifeRegTimer, humanCharacter.getSubAttributes().getLifeRegenerationTimer());
+
+        System.out.println(humanCharacter.displayCharacterInfo());
+    }
+
+    @Test
+    void IncreaseHeroIntelligence_Success() {
+        CharacterFactory humanFactory = new HumanFactory();
+        RPGCharacter humanCharacter = humanFactory.createCharacter("Blaster");
+
+        assertNotNull(humanCharacter);
+
+        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+            assertTrue(true);
+            System.out.println(humanCharacter.displayCharacterInfo());
+        } else {
+            fail();
+        }
+
+        int currentMana = humanCharacter.getSubAttributes().getMana();
+        int currentManaReg = humanCharacter.getSubAttributes().getManaRegeneration();
+        float currentManaRegTimer = humanCharacter.getSubAttributes().getManaRegenerationTimer();
+        int currentTroopXP = humanCharacter.getSubAttributes().getTroopXP();
+        double currentSpellCastingChance = humanCharacter.getSubAttributes().getSpellcastingChance();
+
+        int pointsOfIntelligenceToIncrease = 2;
+        humanCharacter.getMainAttributes().increaseIntelligence(pointsOfIntelligenceToIncrease, 0); // increased intelligence by 2 points
+
+        int newIntelligence = humanCharacter.getMainAttributes().getIntelligence();
+        assertEquals(newIntelligence, humanCharacter.getMainAttributes().getIntelligence());
+
+        double newSpellCastingChance = currentSpellCastingChance + newIntelligence * (AttributesConsts.SPELL_CASTING_PERCENTAGE_INCREASE / 100.f);
+        assertEquals(newSpellCastingChance, humanCharacter.getSubAttributes().getSpellcastingChance());
+
+        int newTroopXP = currentTroopXP + (newIntelligence / AttributesConsts.TROOP_XP_DIVISOR);
+        assertEquals(newTroopXP, humanCharacter.getSubAttributes().getTroopXP());
+
+        int newManaReg = currentManaReg + newIntelligence / AttributesConsts.MANA_REGEN_DIVISOR;
+        assertEquals(newManaReg, humanCharacter.getSubAttributes().getManaRegeneration());
+
+        int newMana = currentMana + newIntelligence * AttributesConsts.MANA_MULTIPLIER;
+        assertEquals(newMana, humanCharacter.getSubAttributes().getMana());
+
+        float newManaRegTimer = currentManaRegTimer - (float) newIntelligence / AttributesConsts.MANA_REGEN_TIMER_DIVISOR * AttributesConsts.MANA_REGEN_TIMER_REDUCTION;
+        assertEquals(newManaRegTimer, humanCharacter.getSubAttributes().getManaRegenerationTimer());
+
+        System.out.println(humanCharacter.displayCharacterInfo());
+    }
+
+    @Test
+    void IncreaseHeroCharisma_Success() {
+        CharacterFactory humanFactory = new HumanFactory();
+        RPGCharacter humanCharacter = humanFactory.createCharacter("Blaster");
+
+        assertNotNull(humanCharacter);
+
+        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+            assertTrue(true);
+            System.out.println(humanCharacter.displayCharacterInfo());
+        } else {
+            fail();
+        }
+
+        int currentCommandRadius = humanCharacter.getSubAttributes().getCommand();
+        int currentMorale = humanCharacter.getSubAttributes().getMorale();
+        double currentDiscount = humanCharacter.getSubAttributes().getDiscount();
+        int currentRetinueSlots = humanCharacter.getSubAttributes().getRetinueSlots();
+
+        int pointsOfCharismaToIncrease = 2;
+        humanCharacter.getMainAttributes().increaseCharisma(pointsOfCharismaToIncrease); // increased charisma by 2 points
+
+        int newCharisma = humanCharacter.getMainAttributes().getCharisma();
+        assertEquals(newCharisma, humanCharacter.getMainAttributes().getCharisma());
+
+        int newRetinueSlots = currentRetinueSlots + newCharisma / AttributesConsts.RETINUE_SLOT_DIVISOR;
+        assertEquals(newRetinueSlots, humanCharacter.getSubAttributes().getRetinueSlots());
+
+        double newDiscount = newCharisma < 6 ? 0.0 : currentDiscount + newCharisma * (AttributesConsts.DISCOUNT_PERCENTAGE_INCREASE / 100.f);
+        assertEquals(newDiscount, humanCharacter.getSubAttributes().getDiscount());
+
+        int newMorale = currentMorale + newCharisma / AttributesConsts.MORALE_DIVISOR;
+        assertEquals(newMorale, humanCharacter.getSubAttributes().getMorale());
+
+        int newCommandRadius = currentCommandRadius + newCharisma / AttributesConsts.COMMAND_RADIUS_DIVISOR;
+        assertEquals(newCommandRadius, humanCharacter.getSubAttributes().getCommand());
 
         System.out.println(humanCharacter.displayCharacterInfo());
     }

@@ -8,8 +8,10 @@ public class AttributesConsts {
     public static final int LIFE_REGEN_TIMER_DIVISOR = 10;
     public static final int LIFE_REGEN_TIMER_REDUCTION = 2;
     public static final int LIFE_REGEN_TIMER_STARTING_VALUE = 51;
+    public static final int MANA_STARTING_VALUE  = 20;
     public static final int MANA_REGEN_TIMER_DIVISOR = 20;
     public static final int MANA_REGEN_TIMER_REDUCTION = 2;
+    public static final int MANA_REGEN_TIMER_STARTING_VALUE = 51;
     public static final int COMBAT_DIVISOR = 2;
     public static final int SPEED_DIVISOR = 2;
     public static final int RESISTANCE_DIVISOR = 2;

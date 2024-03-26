@@ -27,9 +27,9 @@ public class SubAttributes {
     private int armor;
 
     // for INT specific
-    private int mana;
+    private int mana = AttributesConsts.MANA_STARTING_VALUE;
     private int manaRegeneration;
-    private int manaRegenerationTimer;  // in seconds
+    private float manaRegenerationTimer = AttributesConsts.MANA_REGEN_TIMER_STARTING_VALUE;  // in seconds
     private int troopXP;
     private double spellcastingChance; // in percentage
 
@@ -37,7 +37,13 @@ public class SubAttributes {
     private double discount;  // in percentage
     private int retinueSlots;
 
+    private Resistances resistances = new Resistances();
+
     public SubAttributes() {
+    }
+
+    public void updateResistances(int resistance, int armor) {
+        resistances.calculateResistances(resistance, armor);
     }
 
     public void increaseStatsOnLevelUp(int levels) {
@@ -73,9 +79,10 @@ public class SubAttributes {
 
     public void updateDexterityRelatedAttributes(int dexterity) {
         calculateSpeed(dexterity);
-        // TODO:: resistance, need more thought into it, resistance can increase for all damage types
         calculateResistance(dexterity);
         calculateArmor(dexterity);
+
+        resistances.calculateResistances(resistance, armor);
     }
 
     private void calculateArmor(int dexterity) {
@@ -94,8 +101,6 @@ public class SubAttributes {
         calculateMana(intelligence);
         calculateManaRegeneration(intelligence);
         calculateManaRegenerationTimer(intelligence);
-
-        // TODO:: create a static final variable in the character to check if its hero or npc, if its hero dont calculateTroopXP()
         calculateTroopXP(intelligence, troopXP);
         calculateSpellCastingChance(intelligence);
     }
@@ -110,7 +115,7 @@ public class SubAttributes {
     }
 
     private void calculateManaRegenerationTimer(int intelligence) {
-        manaRegenerationTimer -= intelligence / AttributesConsts.MANA_REGEN_TIMER_DIVISOR * AttributesConsts.MANA_REGEN_TIMER_REDUCTION;
+        manaRegenerationTimer -= (float) intelligence / AttributesConsts.MANA_REGEN_TIMER_DIVISOR * AttributesConsts.MANA_REGEN_TIMER_REDUCTION;
     }
 
     private void calculateManaRegeneration(int intelligence) {
@@ -169,6 +174,14 @@ public class SubAttributes {
                 "Troop XP: " + troopXP + "\n" +
                 "Spell Casting Chance: " + spellcastingChance + "\n" +
                 "Discount: " + discount + "\n" +
-                "Retinue Slots: " + retinueSlots;
+                "Retinue Slots: " + retinueSlots +
+                "\n------------------------------------\n" +
+                "Crushing resistance: " + resistances.getResistanceToCrushing() + "\n" +
+                "Piercing resistance: " + resistances.getResistanceToPiercing() + "\n" +
+                "Slashing resistance: " + resistances.getResistanceToSlashing() + "\n" +
+                "Cold resistance: " + resistances.getResistanceToCold() + "\n" +
+                "Fire resistance: " + resistances.getResistanceToFire() + "\n" +
+                "Electric resistance: " + resistances.getResistanceToElectric() + "\n" +
+                "Magic resistance: " + resistances.getResistanceToMagic();
     }
 }
