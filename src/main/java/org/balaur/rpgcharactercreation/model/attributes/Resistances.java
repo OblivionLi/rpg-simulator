@@ -23,7 +23,7 @@ public class Resistances {
         // if the armor is 5 then the resistances points should become 2, 2, 1
         // if the armor becomes 6 then the resistances update to 2, 2, 2
         // for armor 7 -> 3, 2, 2 and so on
-        // !!!! an incorrect way to assign resistances points is if armor is 5 for example and the distribution is 3, 2, 1 <- this is incorrect
+        // !!!! an incorrect way to assign resistances points is if armor is 5 for example and the distribution is 3, 1, 1 <- this is incorrect
         calculateElementalResistance(initialResistance);
         calculateArmorResistance(initialArmor);
     }
