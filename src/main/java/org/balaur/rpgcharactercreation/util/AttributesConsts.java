@@ -29,4 +29,6 @@ public class AttributesConsts {
 
     public static final int INCREMENT_HEALTH_ON_LEVEL_UP = 20;
     public static final int INCREMENT_MANA_ON_LEVEL_UP = 5;
+
+    public static final int NPC_MAX_EXP = 140;
 }

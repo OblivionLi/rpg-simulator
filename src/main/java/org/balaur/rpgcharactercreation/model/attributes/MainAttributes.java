@@ -60,4 +60,8 @@ public class MainAttributes {
                 "------------------------------------" + "\n" +
                 subAttributes.displaySubAttributes();
     }
+
+    public String displayNPCAttributes() {
+        return subAttributes.displayNPCSubAttributes();
+    }
 }

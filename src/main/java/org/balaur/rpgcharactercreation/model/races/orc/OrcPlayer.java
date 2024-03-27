@@ -1,4 +1,4 @@
-package org.balaur.rpgcharactercreation.model.races.human;
+package org.balaur.rpgcharactercreation.model.races.orc;
 
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.BaseCharacter;
@@ -10,20 +10,20 @@ import org.balaur.rpgcharactercreation.util.DamageType;
 import org.balaur.rpgcharactercreation.util.AttributesStartingValues;
 
 @Getter
-public class HumanPlayer extends BaseCharacter {
-    private final String race = "Human";
+public class OrcPlayer extends BaseCharacter {
+    private final String race = "Orc";
 
-    public HumanPlayer(String name) {
+    public OrcPlayer(String name) {
         super(
                 name,
                 AlignmentType.GOOD,
                 new LevelingSystem(),
-                DamageType.SLASHING,
+                DamageType.CRUSHING,
                 new MainAttributes(
-                        AttributesStartingValues.HUMAN_STR_STARTING_VALUE,
-                        AttributesStartingValues.HUMAN_DEX_STARTING_VALUE,
-                        AttributesStartingValues.HUMAN_INT_STARTING_VALUE,
-                        AttributesStartingValues.HUMAN_CHA_STARTING_VALUE,
+                        AttributesStartingValues.ORC_STR_STARTING_VALUE,
+                        AttributesStartingValues.ORC_DEX_STARTING_VALUE,
+                        AttributesStartingValues.ORC_INT_STARTING_VALUE,
+                        AttributesStartingValues.ORC_CHA_STARTING_VALUE,
                         0
                 )
         );

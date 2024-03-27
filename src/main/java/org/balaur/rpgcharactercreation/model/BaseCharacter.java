@@ -21,4 +21,31 @@ public abstract class BaseCharacter implements RPGCharacter {
         this.damageType = damageType;
         this.attributes = attributes;
     }
+
+    public String displayCharacterInfo(String race) {
+        return "------------------------------------" + "\n" +
+                "Name: " + name + "\n" +
+                "Race: " + race + "\n" +
+                "Alignment: " + alignment.name() + "\n" +
+                "Damage Type: " + damageType.name() + "\n" +
+                "------------------------------------" + "\n" +
+                "Level: " + levelingSystem.getLevel() + "\n" +
+                "Unspent Level Points: " + levelingSystem.getLevelPoints() + "\n" +
+                "Current Experience: " + levelingSystem.getCurrentExperience() + "\n" +
+                "Experience Required: " + levelingSystem.getExperienceRequired() + "\n" +
+                "------------------------------------" + "\n" +
+                attributes.displayAttributes();
+    }
+
+    public void gainExperience(int experience) {
+        if (experience <= 0) {
+            return;
+        }
+
+        if (levelingSystem.shouldLevelUp(experience)) {
+            int prevLevel = levelingSystem.getLevel();
+            levelingSystem.levelUp(attributes.getSubAttributes().getTraining());
+            attributes.getSubAttributes().increaseStatsOnLevelUp(levelingSystem.getLevel() - prevLevel);
+        }
+    }
 }

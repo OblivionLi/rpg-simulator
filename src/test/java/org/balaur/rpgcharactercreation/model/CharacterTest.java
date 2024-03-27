@@ -15,9 +15,9 @@ class CharacterTest {
 
         assertNotNull(humanCharacter);
 
-        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+        if (humanCharacter.displayCharacterInfo(humanCharacter.getRace()).contains("Name: Blaster")) {
             assertTrue(true);
-            System.out.println(humanCharacter.displayCharacterInfo());
+            System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
         } else {
             fail();
         }
@@ -30,9 +30,9 @@ class CharacterTest {
 
         assertNotNull(humanCharacter);
 
-        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+        if (humanCharacter.displayCharacterInfo(humanCharacter.getRace()).contains("Name: Blaster")) {
             assertTrue(true);
-            System.out.println(humanCharacter.displayCharacterInfo());
+            System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
         } else {
             fail();
         }
@@ -57,7 +57,7 @@ class CharacterTest {
         int newMana = currentMana + (newLevel * AttributesConsts.INCREMENT_MANA_ON_LEVEL_UP);
         assertEquals(newMana, humanCharacter.getSubAttributes().getMana());
 
-        System.out.println(humanCharacter.displayCharacterInfo());
+        System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
     }
 
     @Test
@@ -67,9 +67,9 @@ class CharacterTest {
 
         assertNotNull(humanCharacter);
 
-        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+        if (humanCharacter.displayCharacterInfo(humanCharacter.getRace()).contains("Name: Blaster")) {
             assertTrue(true);
-            System.out.println(humanCharacter.displayCharacterInfo());
+            System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
         } else {
             fail();
         }
@@ -90,9 +90,9 @@ class CharacterTest {
 
         assertNotNull(humanCharacter);
 
-        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+        if (humanCharacter.displayCharacterInfo(humanCharacter.getRace()).contains("Name: Blaster")) {
             assertTrue(true);
-            System.out.println(humanCharacter.displayCharacterInfo());
+            System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
         } else {
             fail();
         }
@@ -120,7 +120,7 @@ class CharacterTest {
         float newLifeRegTimer = currentLifeRegTimer - (float) newStrength / AttributesConsts.LIFE_REGEN_TIMER_DIVISOR * AttributesConsts.LIFE_REGEN_TIMER_REDUCTION;
         assertEquals(newLifeRegTimer, humanCharacter.getSubAttributes().getLifeRegenerationTimer());
 
-        System.out.println(humanCharacter.displayCharacterInfo());
+        System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
     }
 
     @Test
@@ -130,9 +130,9 @@ class CharacterTest {
 
         assertNotNull(humanCharacter);
 
-        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+        if (humanCharacter.displayCharacterInfo(humanCharacter.getRace()).contains("Name: Blaster")) {
             assertTrue(true);
-            System.out.println(humanCharacter.displayCharacterInfo());
+            System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
         } else {
             fail();
         }
@@ -164,7 +164,7 @@ class CharacterTest {
         float newManaRegTimer = currentManaRegTimer - (float) newIntelligence / AttributesConsts.MANA_REGEN_TIMER_DIVISOR * AttributesConsts.MANA_REGEN_TIMER_REDUCTION;
         assertEquals(newManaRegTimer, humanCharacter.getSubAttributes().getManaRegenerationTimer());
 
-        System.out.println(humanCharacter.displayCharacterInfo());
+        System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
     }
 
     @Test
@@ -174,9 +174,9 @@ class CharacterTest {
 
         assertNotNull(humanCharacter);
 
-        if (humanCharacter.displayCharacterInfo().contains("Name: Blaster")) {
+        if (humanCharacter.displayCharacterInfo(humanCharacter.getRace()).contains("Name: Blaster")) {
             assertTrue(true);
-            System.out.println(humanCharacter.displayCharacterInfo());
+            System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
         } else {
             fail();
         }
@@ -204,6 +204,6 @@ class CharacterTest {
         int newCommandRadius = currentCommandRadius + newCharisma / AttributesConsts.COMMAND_RADIUS_DIVISOR;
         assertEquals(newCommandRadius, humanCharacter.getSubAttributes().getCommand());
 
-        System.out.println(humanCharacter.displayCharacterInfo());
+        System.out.println(humanCharacter.displayCharacterInfo(humanCharacter.getRace()));
     }
 }

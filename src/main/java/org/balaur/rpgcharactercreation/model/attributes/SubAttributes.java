@@ -184,4 +184,26 @@ public class SubAttributes {
                 "Electric resistance: " + resistances.getResistanceToElectric() + "\n" +
                 "Magic resistance: " + resistances.getResistanceToMagic();
     }
+
+    public String displayNPCSubAttributes() {
+        return "Health: " + health + "\n" +
+                "Combat: " + combat + "\n" +
+                "Speed: " + speed + "\n" +
+                "Resistance: " + resistance + "\n" +
+                "Life Regeneration: " + lifeRegeneration + "\n" +
+                "Life Regeneration Timer: " + lifeRegenerationTimer + "\n" +
+                "Armor: " + armor + "\n" +
+                "Mana: " + mana + "\n" +
+                "Mana Regeneration: " + manaRegeneration + "\n" +
+                "Mana Regeneration Timer: " + manaRegenerationTimer + "\n" +
+                "Troop XP: " + troopXP + "\n" +
+                "\n------------------------------------\n" +
+                "Crushing resistance: " + resistances.getResistanceToCrushing() + "\n" +
+                "Piercing resistance: " + resistances.getResistanceToPiercing() + "\n" +
+                "Slashing resistance: " + resistances.getResistanceToSlashing() + "\n" +
+                "Cold resistance: " + resistances.getResistanceToCold() + "\n" +
+                "Fire resistance: " + resistances.getResistanceToFire() + "\n" +
+                "Electric resistance: " + resistances.getResistanceToElectric() + "\n" +
+                "Magic resistance: " + resistances.getResistanceToMagic();
+    }
 }

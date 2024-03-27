@@ -1,6 +1,8 @@
 package org.balaur.rpgcharactercreation.model.leveling;
 
 import lombok.Getter;
+import org.balaur.rpgcharactercreation.util.AttributesConsts;
+import org.balaur.rpgcharactercreation.util.NPCRanks;
 
 @Getter
 public class LevelingSystem {
@@ -117,5 +119,16 @@ public class LevelingSystem {
             case 19 -> 14;
             default -> 15;
         };
+    }
+
+    public int getNPCAttributesPointsAmount(int experience) {
+        if (experience <= 0) {
+            return 0;
+        }
+
+        currentExperience += experience;
+        NPCRanks rank = NPCRanks.getRankBasedOnExperience(currentExperience);
+
+        return NPCRanks.getPointsBasedOnRank(rank);
     }
 }
