@@ -1,7 +1,6 @@
 package org.balaur.rpgcharactercreation.model.leveling;
 
 import lombok.Getter;
-import org.balaur.rpgcharactercreation.util.AttributesConsts;
 import org.balaur.rpgcharactercreation.util.NPCRanks;
 
 @Getter
