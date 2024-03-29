@@ -1,6 +1,6 @@
 package org.balaur.rpgcharactercreation.model;
 
-import org.balaur.rpgcharactercreation.model.attributes.Resistances;
+import org.balaur.rpgcharactercreation.model.attributes.resistances.Resistances;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;

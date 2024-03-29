@@ -1,15 +1,16 @@
-package org.balaur.rpgcharactercreation.model.attributes;
+package org.balaur.rpgcharactercreation.model.attributes.sub;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.balaur.rpgcharactercreation.model.attributes.resistances.Resistances;
 import org.balaur.rpgcharactercreation.util.AttributesConsts;
 
 @Getter
 @Setter
 public class SubAttributes {
     // main sub attributes
-    private int combat = AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE;
-    private int health = AttributesConsts.HEALTH_STARTING_VALUE;
+    private int combat;
+    private int health;
     private int speed;
     private int command; // command radius
     private int morale;
@@ -21,17 +22,17 @@ public class SubAttributes {
     // ~ sub-sub attributes that can't be changed directly but indirectly by the main sub attributes
     // for STR specific
     private int lifeRegeneration;
-    private float lifeRegenerationTimer = AttributesConsts.LIFE_REGEN_TIMER_STARTING_VALUE; // in seconds
+    private float lifeRegenerationTimer; // in seconds
 
     // for DEX specific
     private int armor;
 
     // for INT specific
-    private int mana = AttributesConsts.MANA_STARTING_VALUE;
+    private int mana;
     private int manaRegeneration;
-    private float manaRegenerationTimer = AttributesConsts.MANA_REGEN_TIMER_STARTING_VALUE;  // in seconds
+    private float manaRegenerationTimer;  // in seconds
     private int troopXP;
-    private double spellcastingChance; // in percentage
+    private double spellCastingChance; // in percentage
 
     // for CHA specific
     private double discount;  // in percentage
@@ -40,6 +41,17 @@ public class SubAttributes {
     private Resistances resistances = new Resistances();
 
     public SubAttributes() {
+    }
+
+    private void initializePlayerStartingValues() {
+        combat = AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE;
+        health = AttributesConsts.HEALTH_STARTING_VALUE;
+        lifeRegenerationTimer = AttributesConsts.LIFE_REGEN_TIMER_STARTING_VALUE;
+        mana = AttributesConsts.MANA_STARTING_VALUE;
+        manaRegenerationTimer = AttributesConsts.MANA_REGEN_TIMER_STARTING_VALUE;
+    }
+
+    private void initializeNPCStartingValues() {
     }
 
     public void updateResistances(int resistance, int armor) {
@@ -107,10 +119,14 @@ public class SubAttributes {
 
     private void calculateSpellCastingChance(int intelligence) {
         double increase = intelligence * (AttributesConsts.SPELL_CASTING_PERCENTAGE_INCREASE / 100.f);
-        spellcastingChance += increase;
+        spellCastingChance += increase;
     }
 
     private void calculateTroopXP(int intelligence, int troopXP) {
+        if (troopXP == 0) {
+            return;
+        }
+
         this.troopXP += troopXP + (intelligence / AttributesConsts.TROOP_XP_DIVISOR);
     }
 
@@ -172,7 +188,7 @@ public class SubAttributes {
                 "Mana Regeneration: " + manaRegeneration + "\n" +
                 "Mana Regeneration Timer: " + manaRegenerationTimer + "\n" +
                 "Troop XP: " + troopXP + "\n" +
-                "Spell Casting Chance: " + spellcastingChance + "\n" +
+                "Spell Casting Chance: " + spellCastingChance + "\n" +
                 "Discount: " + discount + "\n" +
                 "Retinue Slots: " + retinueSlots +
                 "\n------------------------------------\n" +

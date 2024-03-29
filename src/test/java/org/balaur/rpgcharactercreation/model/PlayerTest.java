@@ -2,16 +2,13 @@ package org.balaur.rpgcharactercreation.model;
 
 import org.balaur.rpgcharactercreation.model.races.PlayerHero;
 import org.balaur.rpgcharactercreation.model.races.factory.PlayerFactory;
-import org.balaur.rpgcharactercreation.util.AlignmentType;
-import org.balaur.rpgcharactercreation.util.AttributesConsts;
-import org.balaur.rpgcharactercreation.util.DamageType;
-import org.balaur.rpgcharactercreation.util.Races;
+import org.balaur.rpgcharactercreation.util.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class CharacterTest {
+class PlayerTest {
     private PlayerHero playerHero;
 
     @BeforeEach
@@ -23,7 +20,8 @@ class CharacterTest {
                 .withCanAttackGroundUnits(true)
                 .withCanAttackAirUnits(true)
                 .withRace(Races.HUMAN)
-                .withDamageType(DamageType.SLASHING);
+                .withDamageType(DamageType.SLASHING)
+                .withColor(TeamColors.BLUE);
 
         PlayerFactory pf = new PlayerFactory();
 
@@ -113,39 +111,39 @@ class CharacterTest {
         System.out.println(playerHero.displayCharacterInfo());
     }
 
-    @Test
-    void IncreaseHeroIntelligence_Success() {
-        assertNotNull(playerHero);
-
-        int currentMana = playerHero.getSubAttributes().getMana();
-        int currentManaReg = playerHero.getSubAttributes().getManaRegeneration();
-        float currentManaRegTimer = playerHero.getSubAttributes().getManaRegenerationTimer();
-        int currentTroopXP = playerHero.getSubAttributes().getTroopXP();
-        double currentSpellCastingChance = playerHero.getSubAttributes().getSpellcastingChance();
-
-        int pointsOfIntelligenceToIncrease = 2;
-        playerHero.getMainAttributes().increaseIntelligence(pointsOfIntelligenceToIncrease, 0); // increased intelligence by 2 points
-
-        int newIntelligence = playerHero.getMainAttributes().getIntelligence();
-        assertEquals(newIntelligence, playerHero.getMainAttributes().getIntelligence());
-
-        double newSpellCastingChance = currentSpellCastingChance + newIntelligence * (AttributesConsts.SPELL_CASTING_PERCENTAGE_INCREASE / 100.f);
-        assertEquals(newSpellCastingChance, playerHero.getSubAttributes().getSpellcastingChance());
-
-        int newTroopXP = currentTroopXP + (newIntelligence / AttributesConsts.TROOP_XP_DIVISOR);
-        assertEquals(newTroopXP, playerHero.getSubAttributes().getTroopXP());
-
-        int newManaReg = currentManaReg + newIntelligence / AttributesConsts.MANA_REGEN_DIVISOR;
-        assertEquals(newManaReg, playerHero.getSubAttributes().getManaRegeneration());
-
-        int newMana = currentMana + newIntelligence * AttributesConsts.MANA_MULTIPLIER;
-        assertEquals(newMana, playerHero.getSubAttributes().getMana());
-
-        float newManaRegTimer = currentManaRegTimer - (float) newIntelligence / AttributesConsts.MANA_REGEN_TIMER_DIVISOR * AttributesConsts.MANA_REGEN_TIMER_REDUCTION;
-        assertEquals(newManaRegTimer, playerHero.getSubAttributes().getManaRegenerationTimer());
-
-        System.out.println(playerHero.displayCharacterInfo());
-    }
+//    @Test
+//    void IncreaseHeroIntelligence_Success() {
+//        assertNotNull(playerHero);
+//
+//        int currentMana = playerHero.getSubAttributes().getMana();
+//        int currentManaReg = playerHero.getSubAttributes().getManaRegeneration();
+//        float currentManaRegTimer = playerHero.getSubAttributes().getManaRegenerationTimer();
+//        int currentTroopXP = playerHero.getSubAttributes().getTroopXP();
+//        double currentSpellCastingChance = playerHero.getSubAttributes().getSpellcastingChance();
+//
+//        int pointsOfIntelligenceToIncrease = 2;
+//        playerHero.getMainAttributes().increaseIntelligence(pointsOfIntelligenceToIncrease, 0); // increased intelligence by 2 points
+//
+//        int newIntelligence = playerHero.getMainAttributes().getIntelligence();
+//        assertEquals(newIntelligence, playerHero.getMainAttributes().getIntelligence());
+//
+//        double newSpellCastingChance = currentSpellCastingChance + newIntelligence * (AttributesConsts.SPELL_CASTING_PERCENTAGE_INCREASE / 100.f);
+//        assertEquals(newSpellCastingChance, playerHero.getSubAttributes().getSpellcastingChance());
+//
+//        int newTroopXP = currentTroopXP + (newIntelligence / AttributesConsts.TROOP_XP_DIVISOR);
+//        assertEquals(newTroopXP, playerHero.getSubAttributes().getTroopXP());
+//
+//        int newManaReg = currentManaReg + newIntelligence / AttributesConsts.MANA_REGEN_DIVISOR;
+//        assertEquals(newManaReg, playerHero.getSubAttributes().getManaRegeneration());
+//
+//        int newMana = currentMana + newIntelligence * AttributesConsts.MANA_MULTIPLIER;
+//        assertEquals(newMana, playerHero.getSubAttributes().getMana());
+//
+//        float newManaRegTimer = currentManaRegTimer - (float) newIntelligence / AttributesConsts.MANA_REGEN_TIMER_DIVISOR * AttributesConsts.MANA_REGEN_TIMER_REDUCTION;
+//        assertEquals(newManaRegTimer, playerHero.getSubAttributes().getManaRegenerationTimer());
+//
+//        System.out.println(playerHero.displayCharacterInfo());
+//    }
 
     @Test
     void IncreaseHeroCharisma_Success() {

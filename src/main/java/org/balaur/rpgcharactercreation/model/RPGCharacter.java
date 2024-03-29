@@ -1,7 +1,7 @@
 package org.balaur.rpgcharactercreation.model;
 
-import org.balaur.rpgcharactercreation.model.attributes.MainAttributes;
-import org.balaur.rpgcharactercreation.model.attributes.SubAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.balaur.rpgcharactercreation.util.Races;
 

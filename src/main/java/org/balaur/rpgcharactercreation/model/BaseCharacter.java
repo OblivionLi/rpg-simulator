@@ -1,7 +1,7 @@
 package org.balaur.rpgcharactercreation.model;
 
 import lombok.Getter;
-import org.balaur.rpgcharactercreation.model.attributes.MainAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.balaur.rpgcharactercreation.util.AlignmentType;
 import org.balaur.rpgcharactercreation.util.DamageType;

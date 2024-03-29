@@ -1,7 +1,8 @@
-package org.balaur.rpgcharactercreation.model.attributes;
+package org.balaur.rpgcharactercreation.model.attributes.main;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
 
 @Setter
 @Getter
@@ -13,19 +14,23 @@ public class MainAttributes {
 
     private SubAttributes subAttributes;
 
-    public MainAttributes(int strength, int dexterity, int intelligence, int charisma, int troopXP) {
+    public MainAttributes(int strength, int dexterity, int intelligence, int charisma) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.intelligence = intelligence;
         this.charisma = charisma;
 
-        subAttributes = new SubAttributes();
+//        subAttributes = new SubAttributes(characterType);
+//
+//        subAttributes.updateStrengthRelatedAttributes(this.strength);
+//        subAttributes.updateDexterityRelatedAttributes(this.dexterity);
+//        subAttributes.updateIntelligenceRelatedAttributes(this.intelligence, troopXP);
+//        subAttributes.updateCharismaRelatedAttributes(this.charisma);
+//        subAttributes.updateResistances(subAttributes.getResistance(), subAttributes.getArmor());
+    }
 
-        subAttributes.updateStrengthRelatedAttributes(this.strength);
-        subAttributes.updateDexterityRelatedAttributes(this.dexterity);
-        subAttributes.updateIntelligenceRelatedAttributes(this.intelligence, troopXP);
-        subAttributes.updateCharismaRelatedAttributes(this.charisma);
-        subAttributes.updateResistances(subAttributes.getResistance(), subAttributes.getArmor());
+    public void initSubAttributes(SubAttributes subAttributes) {
+        this.subAttributes = subAttributes;
     }
 
     public void increaseStrength(int strength) {

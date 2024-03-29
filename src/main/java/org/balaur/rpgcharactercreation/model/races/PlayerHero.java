@@ -2,16 +2,18 @@ package org.balaur.rpgcharactercreation.model.races;
 
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.BaseCharacter;
-import org.balaur.rpgcharactercreation.model.attributes.MainAttributes;
-import org.balaur.rpgcharactercreation.model.attributes.SubAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.balaur.rpgcharactercreation.util.AlignmentType;
 import org.balaur.rpgcharactercreation.util.DamageType;
 import org.balaur.rpgcharactercreation.util.Races;
+import org.balaur.rpgcharactercreation.util.TeamColors;
 
 @Getter
 public class PlayerHero extends BaseCharacter {
     private Races race;
+    private TeamColors teamColor;
     private final boolean canAttackGroundUnits = true;
     private final boolean canAttackAirUnits = true;
 
@@ -25,12 +27,12 @@ public class PlayerHero extends BaseCharacter {
                         builder.strength,
                         builder.dexterity,
                         builder.intelligence,
-                        builder.charisma,
-                        0
+                        builder.charisma
                 )
         );
 
         this.race = builder.race;
+        this.teamColor = builder.teamColor;
     }
 
     public String displayCharacterInfo() {
@@ -69,9 +71,15 @@ public class PlayerHero extends BaseCharacter {
         private Races race;
         private boolean canAttackGroundUnits;
         private boolean canAttackAirUnits;
+        private TeamColors teamColor;
 
         public Builder withAlignmentType(AlignmentType alignmentType) {
             this.alignmentType = alignmentType;
+            return this;
+        }
+
+        public Builder withColor(TeamColors color) {
+            this.teamColor = color;
             return this;
         }
 

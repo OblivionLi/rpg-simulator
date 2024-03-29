@@ -2,21 +2,21 @@ package org.balaur.rpgcharactercreation.model.races;
 
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.BaseCharacter;
-import org.balaur.rpgcharactercreation.model.attributes.MainAttributes;
-import org.balaur.rpgcharactercreation.model.attributes.SubAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesInit;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
-import org.balaur.rpgcharactercreation.util.AlignmentType;
-import org.balaur.rpgcharactercreation.util.DamageType;
-import org.balaur.rpgcharactercreation.util.NPCRanks;
-import org.balaur.rpgcharactercreation.util.Races;
+import org.balaur.rpgcharactercreation.util.*;
 
 @Getter
-public class NPCTroop extends BaseCharacter implements NPCRaceType {
+public class NPCTroop extends BaseCharacter implements NPCRaceType, SubAttributesInit {
     private Races race;
     private NPCRanks rank;
     private NPCRaceType npcRaceType;
     private boolean canAttackGroundUnits;
     private boolean canAttackAirUnits;
+    private TeamColors teamColor;
+    private TroopType troopType;
 
     public NPCTroop(Builder builder) {
         super(
@@ -28,8 +28,8 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
                         builder.strength,
                         builder.dexterity,
                         builder.intelligence,
-                        builder.charisma,
-                        builder.troopXP)
+                        builder.charisma
+                )
         );
 
         this.rank = NPCRanks.RECRUIT;
@@ -37,6 +37,8 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
         this.canAttackGroundUnits = builder.canAttackGroundUnits;
         this.canAttackAirUnits = builder.canAttackAirUnits;
         this.race = builder.race;
+        this.teamColor = builder.teamColor;
+        this.troopType = builder.troopType;
     }
 
     @Override
@@ -81,6 +83,13 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
         return super.getAttributes().getSubAttributes();
     }
 
+    @Override
+    public void initSubAttributes() {
+        SubAttributes subAttributes = new SubAttributes();
+
+        super.getAttributes().setSubAttributes(subAttributes);
+    }
+
     // TODO:: duplicated in PlayerHero with fewer properties; either leave it like it is now or abstract it (there will be only 2 builders for now, 1 for player and 1 for npc troop)
     public static class Builder {
         private AlignmentType alignmentType;
@@ -95,6 +104,18 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
         private Races race;
         private boolean canAttackGroundUnits;
         private boolean canAttackAirUnits;
+        private TeamColors teamColor;
+        private TroopType troopType;
+
+        public Builder withNPCTroopType(TroopType troopType) {
+            this.troopType = troopType;
+            return this;
+        }
+
+        public Builder withTeamColor(TeamColors teamColor) {
+            this.teamColor = teamColor;
+            return this;
+        }
 
         public Builder withAlignmentType(AlignmentType alignmentType) {
             this.alignmentType = alignmentType;

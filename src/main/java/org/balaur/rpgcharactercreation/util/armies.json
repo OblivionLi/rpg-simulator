@@ -1,0 +1,22 @@
+{
+  "human": {
+    "npcs": {
+      "pikeman": {
+        "combat": 9,
+        "health": 75,
+        "speed": 7,
+        "morale": 0,
+        "magery": 0,
+        "resistance": 0,
+        "lifeRegeneration": 1,
+        "lifeRegenerationTimer": 30,
+        "armor": 6,
+        "mana": 0,
+        "manaRegeneration": 0,
+        "manaRegenerationTimer": 0,
+        "troopXP": 0,
+        "spellCastingChange": 0
+      }
+    }
+  }
+}

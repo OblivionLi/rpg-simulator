@@ -1,4 +1,4 @@
-package org.balaur.rpgcharactercreation.model.attributes;
+package org.balaur.rpgcharactercreation.model.attributes.resistances;
 
 import lombok.Getter;
 
