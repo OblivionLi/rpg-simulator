@@ -1,10 +1,10 @@
 package org.balaur.rpgcharactercreation.model.attributes.main;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesType;
+import org.balaur.rpgcharactercreation.model.races.troops.TroopType;
 
-@Setter
 @Getter
 public class MainAttributes {
     private int strength;
@@ -12,25 +12,21 @@ public class MainAttributes {
     private int intelligence;
     private int charisma;
 
-    private SubAttributes subAttributes;
+    private SubAttributesType subAttributes;
 
-    public MainAttributes(int strength, int dexterity, int intelligence, int charisma) {
+    public MainAttributes(int strength, int dexterity, int intelligence, int charisma, TroopType troopType) {
         this.strength = strength;
         this.dexterity = dexterity;
         this.intelligence = intelligence;
         this.charisma = charisma;
 
-//        subAttributes = new SubAttributes(characterType);
-//
-//        subAttributes.updateStrengthRelatedAttributes(this.strength);
-//        subAttributes.updateDexterityRelatedAttributes(this.dexterity);
-//        subAttributes.updateIntelligenceRelatedAttributes(this.intelligence, troopXP);
-//        subAttributes.updateCharismaRelatedAttributes(this.charisma);
-//        subAttributes.updateResistances(subAttributes.getResistance(), subAttributes.getArmor());
-    }
+        this.subAttributes = new SubAttributes(troopType);
 
-    public void initSubAttributes(SubAttributes subAttributes) {
-        this.subAttributes = subAttributes;
+        subAttributes.updateStrengthRelatedAttributes(this.strength);
+        subAttributes.updateDexterityRelatedAttributes(this.dexterity);
+        subAttributes.updateIntelligenceRelatedAttributes(this.intelligence);
+        subAttributes.updateCharismaRelatedAttributes(this.charisma);
+        subAttributes.updateResistances();
     }
 
     public void increaseStrength(int strength) {
@@ -48,7 +44,7 @@ public class MainAttributes {
     public void increaseIntelligence(int intelligence, int troopXP) {
         this.intelligence += intelligence;
 
-        subAttributes.updateIntelligenceRelatedAttributes(this.intelligence, troopXP);
+        subAttributes.updateIntelligenceRelatedAttributes(this.intelligence);
     }
 
     public void increaseCharisma(int charisma) {
@@ -64,9 +60,5 @@ public class MainAttributes {
                 "Charisma: " + charisma + "\n" +
                 "------------------------------------" + "\n" +
                 subAttributes.displaySubAttributes();
-    }
-
-    public String displayNPCAttributes() {
-        return subAttributes.displayNPCSubAttributes();
     }
 }

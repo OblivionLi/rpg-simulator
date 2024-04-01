@@ -1,22 +1,19 @@
-package org.balaur.rpgcharactercreation.model.races;
+package org.balaur.rpgcharactercreation.model.races.troops;
 
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.BaseCharacter;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
-import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesInit;
-import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesType;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
+import org.balaur.rpgcharactercreation.model.races.NPCRaceType;
 import org.balaur.rpgcharactercreation.util.*;
 
 @Getter
-public class NPCTroop extends BaseCharacter implements NPCRaceType, SubAttributesInit {
+public class NPCTroop extends BaseCharacter implements NPCRaceType {
     private Races race;
+    private TeamColors teamColor;
     private NPCRanks rank;
     private NPCRaceType npcRaceType;
-    private boolean canAttackGroundUnits;
-    private boolean canAttackAirUnits;
-    private TeamColors teamColor;
-    private TroopType troopType;
 
     public NPCTroop(Builder builder) {
         super(
@@ -28,17 +25,15 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType, SubAttribute
                         builder.strength,
                         builder.dexterity,
                         builder.intelligence,
-                        builder.charisma
+                        builder.charisma,
+                        builder.troopType
                 )
         );
 
         this.rank = NPCRanks.RECRUIT;
         this.npcRaceType = builder.npcRaceType;
-        this.canAttackGroundUnits = builder.canAttackGroundUnits;
-        this.canAttackAirUnits = builder.canAttackAirUnits;
         this.race = builder.race;
         this.teamColor = builder.teamColor;
-        this.troopType = builder.troopType;
     }
 
     @Override
@@ -52,7 +47,7 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType, SubAttribute
                 "Current Experience: " + super.getLevelingSystem().getCurrentExperience() + "\n" +
                 "Experience Required: " + super.getLevelingSystem().getExperienceRequired() + "\n" +
                 "------------------------------------" + "\n" +
-                super.getAttributes().displayNPCAttributes();
+                super.getAttributes().displayAttributes();
     }
 
     @Override
@@ -79,15 +74,8 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType, SubAttribute
     }
 
     @Override
-    public SubAttributes getSubAttributes() {
+    public SubAttributesType getSubAttributes() {
         return super.getAttributes().getSubAttributes();
-    }
-
-    @Override
-    public void initSubAttributes() {
-        SubAttributes subAttributes = new SubAttributes();
-
-        super.getAttributes().setSubAttributes(subAttributes);
     }
 
     // TODO:: duplicated in PlayerHero with fewer properties; either leave it like it is now or abstract it (there will be only 2 builders for now, 1 for player and 1 for npc troop)

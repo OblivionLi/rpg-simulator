@@ -1,9 +1,9 @@
-package org.balaur.rpgcharactercreation.model.races.troops;
+package org.balaur.rpgcharactercreation.model.races.player;
 
 import lombok.Getter;
 
 @Getter
-public abstract class BaseTroop implements TroopType {
+public abstract class BasePlayer implements PlayerType {
     protected int combat;
     protected int health;
     protected int speed;
@@ -22,5 +22,4 @@ public abstract class BaseTroop implements TroopType {
     protected double spellCastingChance;
     protected double discount;
     protected int retinueSlots;
-    protected int troopXP;
 }

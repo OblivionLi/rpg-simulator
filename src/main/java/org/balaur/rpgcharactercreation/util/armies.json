@@ -1,5 +1,25 @@
 {
   "human": {
+    "hero": {
+      "combat": 10,
+      "health": 120,
+      "speed": 9,
+      "command": 1,
+      "morale": 1,
+      "magery": 1,
+      "resistance": 6,
+      "training": 1,
+      "merchant": 1,
+      "lifeRegeneration": 3,
+      "lifeRegenerationTimer": 30,
+      "armor": 6,
+      "mana": 20,
+      "manaRegeneration": 1,
+      "manaRegenerationTimer": 30,
+      "spellCastingChange": 10,
+      "discount": 0,
+      "retinueSlots": 2
+    },
     "npcs": {
       "pikeman": {
         "combat": 9,

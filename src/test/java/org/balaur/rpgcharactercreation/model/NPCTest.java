@@ -1,6 +1,6 @@
 package org.balaur.rpgcharactercreation.model;
 
-import org.balaur.rpgcharactercreation.model.races.NPCTroop;
+import org.balaur.rpgcharactercreation.model.races.troops.NPCTroop;
 import org.balaur.rpgcharactercreation.model.races.factory.NPCTroopFactory;
 import org.balaur.rpgcharactercreation.util.AlignmentType;
 import org.balaur.rpgcharactercreation.util.DamageType;

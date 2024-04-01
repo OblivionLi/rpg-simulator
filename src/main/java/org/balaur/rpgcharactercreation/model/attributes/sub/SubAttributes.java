@@ -1,63 +1,60 @@
 package org.balaur.rpgcharactercreation.model.attributes.sub;
 
 import lombok.Getter;
-import lombok.Setter;
 import org.balaur.rpgcharactercreation.model.attributes.resistances.Resistances;
+import org.balaur.rpgcharactercreation.model.races.troops.TroopType;
 import org.balaur.rpgcharactercreation.util.AttributesConsts;
 
 @Getter
-@Setter
-public class SubAttributes {
-    // main sub attributes
+public class SubAttributes implements SubAttributesType {
     private int combat;
     private int health;
     private int speed;
-    private int command; // command radius
-    private int morale;
+    private int command;
+    private float morale;
     private int magery;
     private int resistance;
     private int training;
     private int merchant;
-
-    // ~ sub-sub attributes that can't be changed directly but indirectly by the main sub attributes
-    // for STR specific
     private int lifeRegeneration;
-    private float lifeRegenerationTimer; // in seconds
-
-    // for DEX specific
+    private float lifeRegenerationTimer;
     private int armor;
-
-    // for INT specific
     private int mana;
     private int manaRegeneration;
-    private float manaRegenerationTimer;  // in seconds
-    private int troopXP;
-    private double spellCastingChance; // in percentage
-
-    // for CHA specific
-    private double discount;  // in percentage
+    private float manaRegenerationTimer;
+    private double spellCastingChance;
+    private double discount;
     private int retinueSlots;
 
     private Resistances resistances = new Resistances();
 
-    public SubAttributes() {
+    public SubAttributes(TroopType troop) {
+        combat = troop.getCombat();
+        health = troop.getHealth();
+        speed = troop.getSpeed();
+        command = troop.getCommand();
+        morale = troop.getMorale();
+        magery = troop.getMagery();
+        resistance = troop.getResistance();
+        training = troop.getTraining();
+        merchant = troop.getMerchant();
+        lifeRegeneration = troop.getLifeRegeneration();
+        lifeRegenerationTimer = troop.getLifeRegenerationTimer();
+        armor = troop.getArmor();
+        mana = troop.getMana();
+        manaRegeneration = troop.getManaRegeneration();
+        manaRegenerationTimer = troop.getManaRegenerationTimer();
+        spellCastingChance = troop.getSpellCastingChance();
+        discount = troop.getDiscount();
+        retinueSlots = troop.getRetinueSlots();
     }
 
-    private void initializePlayerStartingValues() {
-        combat = AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE;
-        health = AttributesConsts.HEALTH_STARTING_VALUE;
-        lifeRegenerationTimer = AttributesConsts.LIFE_REGEN_TIMER_STARTING_VALUE;
-        mana = AttributesConsts.MANA_STARTING_VALUE;
-        manaRegenerationTimer = AttributesConsts.MANA_REGEN_TIMER_STARTING_VALUE;
-    }
-
-    private void initializeNPCStartingValues() {
-    }
-
-    public void updateResistances(int resistance, int armor) {
+    @Override
+    public void updateResistances() {
         resistances.calculateResistances(resistance, armor);
     }
 
+    @Override
     public void increaseStatsOnLevelUp(int levels) {
         while (levels-- != 0) {
             health += AttributesConsts.INCREMENT_HEALTH_ON_LEVEL_UP;
@@ -65,6 +62,7 @@ public class SubAttributes {
         }
     }
 
+    @Override
     public void updateStrengthRelatedAttributes(int strength) {
         calculateCombat(strength);
         // TODO:: implement setDamage(); its more complicated, leave it for later
@@ -89,6 +87,7 @@ public class SubAttributes {
         combat += strength / AttributesConsts.COMBAT_DIVISOR;
     }
 
+    @Override
     public void updateDexterityRelatedAttributes(int dexterity) {
         calculateSpeed(dexterity);
         calculateResistance(dexterity);
@@ -109,25 +108,17 @@ public class SubAttributes {
         speed += AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE + dexterity / AttributesConsts.SPEED_DIVISOR;
     }
 
-    public void updateIntelligenceRelatedAttributes(int intelligence, int troopXP) {
+    @Override
+    public void updateIntelligenceRelatedAttributes(int intelligence) {
         calculateMana(intelligence);
         calculateManaRegeneration(intelligence);
         calculateManaRegenerationTimer(intelligence);
-        calculateTroopXP(intelligence, troopXP);
         calculateSpellCastingChance(intelligence);
     }
 
     private void calculateSpellCastingChance(int intelligence) {
         double increase = intelligence * (AttributesConsts.SPELL_CASTING_PERCENTAGE_INCREASE / 100.f);
         spellCastingChance += increase;
-    }
-
-    private void calculateTroopXP(int intelligence, int troopXP) {
-        if (troopXP == 0) {
-            return;
-        }
-
-        this.troopXP += troopXP + (intelligence / AttributesConsts.TROOP_XP_DIVISOR);
     }
 
     private void calculateManaRegenerationTimer(int intelligence) {
@@ -142,6 +133,7 @@ public class SubAttributes {
         mana += intelligence * AttributesConsts.MANA_MULTIPLIER;
     }
 
+    @Override
     public void updateCharismaRelatedAttributes(int charisma) {
         calculateCommandRadius(charisma);
         calculateMorale(charisma);
@@ -164,13 +156,14 @@ public class SubAttributes {
     }
 
     private void calculateMorale(int charisma) {
-        morale += charisma / AttributesConsts.MORALE_DIVISOR;
+        morale += (float) charisma / AttributesConsts.MORALE_DIVISOR;
     }
 
     private void calculateCommandRadius(int charisma) {
         command += charisma / AttributesConsts.COMMAND_RADIUS_DIVISOR;
     }
 
+    @Override
     public String displaySubAttributes() {
         return "Health: " + health + "\n" +
                 "Combat: " + combat + "\n" +
@@ -187,32 +180,9 @@ public class SubAttributes {
                 "Mana: " + mana + "\n" +
                 "Mana Regeneration: " + manaRegeneration + "\n" +
                 "Mana Regeneration Timer: " + manaRegenerationTimer + "\n" +
-                "Troop XP: " + troopXP + "\n" +
                 "Spell Casting Chance: " + spellCastingChance + "\n" +
                 "Discount: " + discount + "\n" +
                 "Retinue Slots: " + retinueSlots +
-                "\n------------------------------------\n" +
-                "Crushing resistance: " + resistances.getResistanceToCrushing() + "\n" +
-                "Piercing resistance: " + resistances.getResistanceToPiercing() + "\n" +
-                "Slashing resistance: " + resistances.getResistanceToSlashing() + "\n" +
-                "Cold resistance: " + resistances.getResistanceToCold() + "\n" +
-                "Fire resistance: " + resistances.getResistanceToFire() + "\n" +
-                "Electric resistance: " + resistances.getResistanceToElectric() + "\n" +
-                "Magic resistance: " + resistances.getResistanceToMagic();
-    }
-
-    public String displayNPCSubAttributes() {
-        return "Health: " + health + "\n" +
-                "Combat: " + combat + "\n" +
-                "Speed: " + speed + "\n" +
-                "Resistance: " + resistance + "\n" +
-                "Life Regeneration: " + lifeRegeneration + "\n" +
-                "Life Regeneration Timer: " + lifeRegenerationTimer + "\n" +
-                "Armor: " + armor + "\n" +
-                "Mana: " + mana + "\n" +
-                "Mana Regeneration: " + manaRegeneration + "\n" +
-                "Mana Regeneration Timer: " + manaRegenerationTimer + "\n" +
-                "Troop XP: " + troopXP + "\n" +
                 "\n------------------------------------\n" +
                 "Crushing resistance: " + resistances.getResistanceToCrushing() + "\n" +
                 "Piercing resistance: " + resistances.getResistanceToPiercing() + "\n" +

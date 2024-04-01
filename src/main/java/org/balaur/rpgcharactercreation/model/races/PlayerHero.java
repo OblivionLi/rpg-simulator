@@ -3,8 +3,9 @@ package org.balaur.rpgcharactercreation.model.races;
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.BaseCharacter;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
-import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesType;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
+import org.balaur.rpgcharactercreation.model.races.troops.TroopType;
 import org.balaur.rpgcharactercreation.util.AlignmentType;
 import org.balaur.rpgcharactercreation.util.DamageType;
 import org.balaur.rpgcharactercreation.util.Races;
@@ -14,8 +15,6 @@ import org.balaur.rpgcharactercreation.util.TeamColors;
 public class PlayerHero extends BaseCharacter {
     private Races race;
     private TeamColors teamColor;
-    private final boolean canAttackGroundUnits = true;
-    private final boolean canAttackAirUnits = true;
 
     public PlayerHero(Builder builder) {
         super(
@@ -27,7 +26,8 @@ public class PlayerHero extends BaseCharacter {
                         builder.strength,
                         builder.dexterity,
                         builder.intelligence,
-                        builder.charisma
+                        builder.charisma,
+                        builder.player
                 )
         );
 
@@ -55,7 +55,7 @@ public class PlayerHero extends BaseCharacter {
     }
 
     @Override
-    public SubAttributes getSubAttributes() {
+    public SubAttributesType getSubAttributes() {
         return super.getAttributes().getSubAttributes();
     }
 
@@ -72,6 +72,7 @@ public class PlayerHero extends BaseCharacter {
         private boolean canAttackGroundUnits;
         private boolean canAttackAirUnits;
         private TeamColors teamColor;
+        private TroopType player;
 
         public Builder withAlignmentType(AlignmentType alignmentType) {
             this.alignmentType = alignmentType;
@@ -126,6 +127,11 @@ public class PlayerHero extends BaseCharacter {
 
         public Builder withDamageType(DamageType damageType) {
             this.damageType = damageType;
+            return this;
+        }
+
+        public Builder withPlayerType(TroopType player) {
+            this.player = player;
             return this;
         }
 

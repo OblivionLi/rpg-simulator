@@ -2,6 +2,7 @@ package org.balaur.rpgcharactercreation.model;
 
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
+import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.balaur.rpgcharactercreation.util.AlignmentType;
 import org.balaur.rpgcharactercreation.util.DamageType;
@@ -13,6 +14,8 @@ public abstract class BaseCharacter implements RPGCharacter {
     private LevelingSystem levelingSystem;
     private DamageType damageType;
     private MainAttributes attributes;
+    private boolean canAttackGroundUnits = true;
+    private boolean canAttackAirUnits = true;
 
     public BaseCharacter(String name, AlignmentType alignment, LevelingSystem levelingSystem, DamageType damageType, MainAttributes attributes) {
         this.name = name;
@@ -20,6 +23,11 @@ public abstract class BaseCharacter implements RPGCharacter {
         this.levelingSystem = levelingSystem;
         this.damageType = damageType;
         this.attributes = attributes;
+    }
+
+    public void updateAllowedAttacks(boolean canAttackGroundUnits, boolean canAttackAirUnits) {
+        this.canAttackAirUnits = canAttackAirUnits;
+        this.canAttackGroundUnits = canAttackGroundUnits;
     }
 
     public String displayCharacterInfo(String race) {
@@ -44,7 +52,7 @@ public abstract class BaseCharacter implements RPGCharacter {
 
         if (levelingSystem.shouldLevelUp(experience)) {
             int prevLevel = levelingSystem.getLevel();
-            levelingSystem.levelUp(attributes.getSubAttributes().getTraining());
+            levelingSystem.levelUp(((SubAttributes) attributes.getSubAttributes()).getTraining());
             attributes.getSubAttributes().increaseStatsOnLevelUp(levelingSystem.getLevel() - prevLevel);
         }
     }
