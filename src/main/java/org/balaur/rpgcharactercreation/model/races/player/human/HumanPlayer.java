@@ -7,7 +7,7 @@ public class HumanPlayer extends BaseTroop {
     private final int HEALTH_STARTING_VALUE = 120;
     private final int SPEED_STARTING_VALUE = 9;
     private final int COMMAND_STARTING_VALUE = 1;
-    private final float MORALE_STARTING_VALUE = 1;
+    private final int MORALE_STARTING_VALUE = 1;
     private final int MAGERY_STARTING_VALUE = 1;
     private final int RESISTANCE_STARTING_VALUE = 6;
     private final int TRAINING_STARTING_VALUE = 1;

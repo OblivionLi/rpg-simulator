@@ -41,4 +41,13 @@ public enum NPCRanks {
 
         return NPCRanks.VETERAN;
     }
+
+    public static int getRequiredExperienceForLevelUp(int experience, NPCRanks rank) {
+        return switch (rank) {
+            case EXPERIENCED -> AttributesConsts.NPC_MAX_EXP - experience;
+            case ROOKIE -> 70 - experience;
+            case RECRUIT -> 40 - experience;
+            case VETERAN -> 0;
+        };
+    }
 }

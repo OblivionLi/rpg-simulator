@@ -11,11 +11,12 @@ public class SubAttributes implements SubAttributesType {
     private int health;
     private int speed;
     private int command;
-    private float morale;
+    private int morale;
     private int magery;
     private int resistance;
     private int training;
     private int merchant;
+    private int troopXP;
     private int lifeRegeneration;
     private float lifeRegenerationTimer;
     private int armor;
@@ -105,7 +106,7 @@ public class SubAttributes implements SubAttributesType {
     }
 
     private void calculateSpeed(int dexterity) {
-        speed += AttributesConsts.SUB_ATTRIBUTE_STARTING_VALUE + dexterity / AttributesConsts.SPEED_DIVISOR;
+        speed += dexterity / AttributesConsts.SPEED_DIVISOR;
     }
 
     @Override
@@ -156,11 +157,15 @@ public class SubAttributes implements SubAttributesType {
     }
 
     private void calculateMorale(int charisma) {
-        morale += (float) charisma / AttributesConsts.MORALE_DIVISOR;
+        morale += charisma / AttributesConsts.MORALE_DIVISOR;
     }
 
     private void calculateCommandRadius(int charisma) {
         command += charisma / AttributesConsts.COMMAND_RADIUS_DIVISOR;
+    }
+
+    public SubAttributes display() {
+        return this;
     }
 
     @Override

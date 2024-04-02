@@ -5,7 +5,7 @@ public interface TroopType {
     int getHealth();
     int getSpeed();
     int getCommand();
-    float getMorale();
+    int getMorale();
     int getMagery();
     int getResistance();
     int getTraining();

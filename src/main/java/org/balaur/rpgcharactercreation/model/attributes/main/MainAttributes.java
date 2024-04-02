@@ -53,6 +53,10 @@ public class MainAttributes {
         subAttributes.updateCharismaRelatedAttributes(this.charisma);
     }
 
+    public MainAttributes display() {
+        return this;
+    }
+
     public String displayAttributes() {
         return "Strength: " + strength + "\n" +
                 "Dexterity: " + dexterity + "\n" +

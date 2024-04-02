@@ -8,4 +8,19 @@ public interface SubAttributesType {
     void updateCharismaRelatedAttributes(int charisma);
     void updateResistances();
     String displaySubAttributes();
+
+    int getHealth();
+    int getMana();
+    int getCombat();
+    int getLifeRegeneration();
+    float getLifeRegenerationTimer();
+    int getManaRegeneration();
+    float getManaRegenerationTimer();
+    int getTroopXP();
+    double getSpellCastingChance();
+    int getCommand();
+    int getMorale();
+    double getDiscount();
+    int getRetinueSlots();
+
 }

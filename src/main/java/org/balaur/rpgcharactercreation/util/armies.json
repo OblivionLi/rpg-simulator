@@ -36,6 +36,22 @@
         "manaRegenerationTimer": 0,
         "troopXP": 0,
         "spellCastingChange": 0
+      },
+      "archer": {
+        "combat": 8,
+        "health": 60,
+        "speed": 9,
+        "morale": 0,
+        "magery": 0,
+        "resistance": 0,
+        "lifeRegeneration": 2,
+        "lifeRegenerationTimer": 30,
+        "armor": 5,
+        "mana": 0,
+        "manaRegeneration": 0,
+        "manaRegenerationTimer": 0,
+        "troopXP": 0,
+        "spellCastingChange": 0
       }
     }
   }

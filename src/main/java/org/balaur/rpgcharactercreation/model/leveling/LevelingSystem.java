@@ -130,4 +130,10 @@ public class LevelingSystem {
 
         return NPCRanks.getPointsBasedOnRank(rank);
     }
+
+    public int getNPCExperienceRequired() {
+        NPCRanks rank = NPCRanks.getRankBasedOnExperience(currentExperience);
+
+        return experienceRequired = NPCRanks.getRequiredExperienceForLevelUp(currentExperience, rank);
+    }
 }

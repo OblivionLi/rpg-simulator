@@ -2,16 +2,16 @@ package org.balaur.rpgcharactercreation.model.races.troops.human;
 
 import org.balaur.rpgcharactercreation.model.races.troops.BaseTroop;
 
-public class Pikeman extends BaseTroop {
-    private final int COMBAT_STARTING_VALUE = 9;
-    private final int HEALTH_STARTING_VALUE = 75;
-    private final int SPEED_STARTING_VALUE = 7;
+public class Archer extends BaseTroop {
+    private final int COMBAT_STARTING_VALUE = 8;
+    private final int HEALTH_STARTING_VALUE = 60;
+    private final int SPEED_STARTING_VALUE = 9;
     private final int MORALE_STARTING_VALUE = 0;
     private final int COMMAND_STARTING_VALUE = 0;
     private final int MAGERY_STARTING_VALUE = 0;
     private final int RESISTANCE_STARTING_VALUE = 0;
-    private final int ARMOR_STARTING_VALUE = 6;
-    private final int LIFE_REGENERATION_STARTING_VALUE = 1;
+    private final int ARMOR_STARTING_VALUE = 5;
+    private final int LIFE_REGENERATION_STARTING_VALUE = 2;
     private final float LIFE_REGENERATION_TIMER_STARTING_VALUE = 30;
     private final int MANA_STARTING_VALUE = 0;
     private final int MANA_REGENERATION_STARTING_VALUE = 0;
@@ -23,7 +23,7 @@ public class Pikeman extends BaseTroop {
     private final int TRAINING_STARTING_VALUE = 0;
     private final int MERCHANT_STARTING_VALUE = 0;
 
-    public Pikeman() {
+    public Archer() {
         super.combat = COMBAT_STARTING_VALUE;
         super.health = HEALTH_STARTING_VALUE;
         super.speed = SPEED_STARTING_VALUE;

@@ -45,7 +45,7 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
                 "Damage Type: " + super.getDamageType().name() + "\n" +
                 "------------------------------------" + "\n" +
                 "Current Experience: " + super.getLevelingSystem().getCurrentExperience() + "\n" +
-                "Experience Required: " + super.getLevelingSystem().getExperienceRequired() + "\n" +
+                "Experience Required: " + super.getLevelingSystem().getNPCExperienceRequired() + "\n" +
                 "------------------------------------" + "\n" +
                 super.getAttributes().displayAttributes();
     }

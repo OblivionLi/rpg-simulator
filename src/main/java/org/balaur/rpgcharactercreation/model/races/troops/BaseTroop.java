@@ -8,7 +8,7 @@ public abstract class BaseTroop implements TroopType {
     protected int health;
     protected int speed;
     protected int command;
-    protected float morale;
+    protected int morale;
     protected int magery;
     protected int resistance;
     protected int training;

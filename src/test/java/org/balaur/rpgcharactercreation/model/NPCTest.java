@@ -2,10 +2,9 @@ package org.balaur.rpgcharactercreation.model;
 
 import org.balaur.rpgcharactercreation.model.races.troops.NPCTroop;
 import org.balaur.rpgcharactercreation.model.races.factory.NPCTroopFactory;
-import org.balaur.rpgcharactercreation.util.AlignmentType;
-import org.balaur.rpgcharactercreation.util.DamageType;
-import org.balaur.rpgcharactercreation.util.Races;
-import org.balaur.rpgcharactercreation.util.TeamColors;
+import org.balaur.rpgcharactercreation.model.races.troops.TroopType;
+import org.balaur.rpgcharactercreation.model.races.troops.human.Pikeman;
+import org.balaur.rpgcharactercreation.util.*;
 import org.balaur.rpgcharactercreation.util.races.human.HumanRaceTypeNPCs;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,6 +17,8 @@ public class NPCTest {
     @BeforeEach
     public void setUp() {
         NPCTroop.Builder builder = new NPCTroop.Builder();
+
+        TroopType pikemanType = new Pikeman();
 
         builder.withAlignmentType(AlignmentType.GOOD)
                 .withNPCRaceType(HumanRaceTypeNPCs.PIKEMAN)
@@ -32,6 +33,7 @@ public class NPCTest {
                 .withIntelligence(2)
                 .withCharisma(1)
                 .withTeamColor(TeamColors.RED)
+                .withNPCTroopType(pikemanType)
             .build();
 
         NPCTroopFactory npcTroopFactory = new NPCTroopFactory();
@@ -48,5 +50,36 @@ public class NPCTest {
         } else {
             fail();
         }
+    }
+
+    @Test
+    void LevelUpPikemanNPC_Success() {
+        assertNotNull(npcTroop);
+
+        //  before levelUp
+        int currentHealth = npcTroop.getSubAttributes().getHealth();
+        int currentCombat = npcTroop.getSubAttributes().getCombat();
+        int currentLifeReg = npcTroop.getSubAttributes().getLifeRegeneration();
+        float currentLifeRegTimer = npcTroop.getSubAttributes().getLifeRegenerationTimer();
+        assertEquals(currentHealth, npcTroop.getSubAttributes().getHealth());
+
+        System.out.println(npcTroop.displayCharacterInfo(Races.HUMAN.getRace()));
+
+        npcTroop.gainExperience(30); // should increase level from 1 to 4
+
+        assertEquals(NPCRanks.RECRUIT, npcTroop.getRank());
+
+        // kinda of useless asserts; while the troop gained exp, 30 is not enough to level up stats; check NPCRanks for this
+        assertEquals(10, currentCombat);
+        assertEquals(2, currentLifeReg);
+        assertEquals(29, (int) currentLifeRegTimer);
+
+        System.out.println(npcTroop.displayCharacterInfo(Races.HUMAN.getRace()));
+
+        npcTroop.gainExperience(11);
+
+        assertEquals(NPCRanks.ROOKIE, npcTroop.getRank());
+
+        System.out.println(npcTroop.displayCharacterInfo(Races.HUMAN.getRace()));
     }
 }
