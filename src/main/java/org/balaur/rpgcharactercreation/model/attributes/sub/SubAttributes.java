@@ -51,6 +51,16 @@ public class SubAttributes implements SubAttributesType {
     }
 
     @Override
+    public void reduceHealth(int damage) {
+        if (health - damage < 0) {
+            health = 0;
+            return;
+        }
+
+        health -= damage;
+    }
+
+    @Override
     public void updateResistances() {
         resistances.calculateResistances(resistance, armor);
     }

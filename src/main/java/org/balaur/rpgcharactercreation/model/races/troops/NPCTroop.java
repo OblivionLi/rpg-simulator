@@ -5,6 +5,7 @@ import org.balaur.rpgcharactercreation.model.BaseCharacter;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
 import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesType;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
+import org.balaur.rpgcharactercreation.model.races.GameEntity;
 import org.balaur.rpgcharactercreation.model.races.NPCRaceType;
 import org.balaur.rpgcharactercreation.util.*;
 

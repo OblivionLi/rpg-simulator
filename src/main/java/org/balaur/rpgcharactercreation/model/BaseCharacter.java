@@ -4,11 +4,12 @@ import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
 import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
+import org.balaur.rpgcharactercreation.model.races.GameEntity;
 import org.balaur.rpgcharactercreation.util.AlignmentType;
 import org.balaur.rpgcharactercreation.util.DamageType;
 
 @Getter
-public abstract class BaseCharacter implements RPGCharacter {
+public abstract class BaseCharacter implements RPGCharacter, GameEntity {
     private String name;
     private AlignmentType alignment;
     private LevelingSystem levelingSystem;
@@ -16,6 +17,9 @@ public abstract class BaseCharacter implements RPGCharacter {
     private MainAttributes attributes;
     private boolean canAttackGroundUnits = true;
     private boolean canAttackAirUnits = true;
+    private boolean isStunned = false;
+    private boolean isBurning = false;
+    private boolean isFrozen = false;
 
     public BaseCharacter(String name, AlignmentType alignment, LevelingSystem levelingSystem, DamageType damageType, MainAttributes attributes) {
         this.name = name;

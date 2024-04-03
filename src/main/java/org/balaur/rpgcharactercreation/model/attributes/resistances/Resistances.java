@@ -1,6 +1,7 @@
 package org.balaur.rpgcharactercreation.model.attributes.resistances;
 
 import lombok.Getter;
+import org.balaur.rpgcharactercreation.util.DamageType;
 
 @Getter
 public class Resistances {
@@ -26,6 +27,18 @@ public class Resistances {
         // !!!! an incorrect way to assign resistances points is if armor is 5 for example and the distribution is 3, 1, 1 <- this is incorrect
         calculateElementalResistance(initialResistance);
         calculateArmorResistance(initialArmor);
+    }
+
+    public int getResistanceBasedOnDamageType(DamageType damageType) {
+        return switch (damageType) {
+            case FIRE -> resistanceToFire;
+            case ELECTRIC -> resistanceToElectric;
+            case COLD -> resistanceToCold;
+            case MAGIC -> resistanceToMagic;
+            case SLASHING -> resistanceToSlashing;
+            case CRUSHING -> resistanceToCrushing;
+            case PIERCING -> resistanceToPiercing;
+        };
     }
 
     private void calculateArmorResistance(int initialArmor) {

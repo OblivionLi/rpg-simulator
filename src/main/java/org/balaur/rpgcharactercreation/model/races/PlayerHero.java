@@ -6,10 +6,7 @@ import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
 import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesType;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.balaur.rpgcharactercreation.model.races.troops.TroopType;
-import org.balaur.rpgcharactercreation.util.AlignmentType;
-import org.balaur.rpgcharactercreation.util.DamageType;
-import org.balaur.rpgcharactercreation.util.Races;
-import org.balaur.rpgcharactercreation.util.TeamColors;
+import org.balaur.rpgcharactercreation.util.*;
 
 @Getter
 public class PlayerHero extends BaseCharacter {
@@ -36,27 +33,99 @@ public class PlayerHero extends BaseCharacter {
     }
 
     public String displayCharacterInfo() {
-        return super.displayCharacterInfo(race.getRace());
+        return displayCharacterInfo(race.getRace());
     }
 
     @Override
     public void gainExperience(int experience) {
-        super.gainExperience(experience);
+        gainExperience(experience);
     }
 
     @Override
     public LevelingSystem getLevelingSystem() {
-        return super.getLevelingSystem();
+        return getLevelingSystem();
     }
 
     @Override
     public MainAttributes getMainAttributes() {
-        return super.getAttributes();
+        return getAttributes();
     }
 
     @Override
     public SubAttributesType getSubAttributes() {
         return super.getAttributes().getSubAttributes();
+    }
+
+    public void attack(GameEntity enemy) {
+        int damage = calculateDamageDealt(enemy);
+        enemy.getAttributes().getSubAttributes().reduceHealth(damage);
+    }
+
+    private int calculateDamageDealt(GameEntity enemy) {
+        // formula to calculate the damage:
+
+        // 1.Combat comparison
+        HitType hitType = calculateHitType(getSubAttributes().getCombat(), enemy.getAttributes().getSubAttributes().getCombat());
+
+        // 2.Armour/resistance reduction
+        DamageType thisDamageType = getDamageType();
+        double resistanceToThisDamageType = enemy.getAttributes().getSubAttributes().getResistances().getResistanceBasedOnDamageType(thisDamageType) * 1.0;
+
+        // TODO:: Not implemented yet 3.Special resistance/weakness
+
+        // 4.Applying damage/reducing HP
+        return getFinalDamage(hitType, resistanceToThisDamageType);
+    }
+
+    private int getFinalDamage(HitType hitType, double resistance) {
+        double damage = getAttributes().getSubAttributes().getCombat();
+
+        // Calculate the amount of damage resisted
+        double resistedDamage = damage * resistance;
+
+        // Subtract the resisted damage from the initial damage
+        int finalDamage = (int) (damage - resistedDamage);
+
+        // Apply the multiplier based on the hit type
+        switch (hitType) {
+            case MISS:
+                finalDamage = 1;
+                break;
+            case MARGINAL_HIT:
+                finalDamage /= 2;
+                break;
+            case STANDARD_HIT:
+                break;  // No change to the damage
+            case CRITICAL_HIT:
+                finalDamage *= 2;
+                break;
+            case DEATHBLOW:
+                finalDamage *= 4;
+                break;
+        }
+
+        return finalDamage;
+    }
+
+    private HitType calculateHitType(int attackerCombat, int defenderCombat) {
+        double ratio = (double) attackerCombat / defenderCombat;
+
+        if (ratio < 1) {
+            // If the attacker's combat score is lower than the defender's, the attack misses
+            return HitType.MISS;
+        } else if (ratio < 1.5) {
+            // If the attacker's combat score is slightly higher than the defender's, the hit is marginal
+            return HitType.MARGINAL_HIT;
+        } else if (ratio < 2) {
+            // If the attacker's combat score is moderately higher than the defender's, the hit is standard
+            return HitType.STANDARD_HIT;
+        } else if (ratio < 4) {
+            // If the attacker's combat score is significantly higher than the defender's, the hit is critical
+            return HitType.CRITICAL_HIT;
+        } else {
+            // If the attacker's combat score is much higher than the defender's, the hit is a deathblow
+            return HitType.DEATHBLOW;
+        }
     }
 
     // TODO:: duplicated in NPCTroop with additional properties; either leave it like it is now or abstract it (there will be only 2 builders for now, 1 for player and 1 for npc troop)
