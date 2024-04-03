@@ -108,6 +108,7 @@ public class PlayerHero extends BaseCharacter {
     }
 
     private HitType calculateHitType(int attackerCombat, int defenderCombat) {
+        // TODO:: improve this; right now the ratio is pretty static which isn't good; needs to be expanded a little bit more to work properly
         double ratio = (double) attackerCombat / defenderCombat;
 
         if (ratio < 1) {
