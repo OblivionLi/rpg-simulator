@@ -16,6 +16,7 @@ public interface SubAttributesType {
     int getHealth();
     int getMana();
     int getCombat();
+    int getSpeed();
     int getLifeRegeneration();
     float getLifeRegenerationTimer();
     int getManaRegeneration();

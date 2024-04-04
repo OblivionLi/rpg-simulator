@@ -79,6 +79,11 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
         return super.getAttributes().getSubAttributes();
     }
 
+    @Override
+    public void startAttacking(GameEntity enemy) {
+        super.startAttacking(enemy);
+    }
+
     // TODO:: duplicated in PlayerHero with fewer properties; either leave it like it is now or abstract it (there will be only 2 builders for now, 1 for player and 1 for npc troop)
     public static class Builder {
         private AlignmentType alignmentType;
