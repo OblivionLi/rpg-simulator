@@ -18,6 +18,25 @@ public class NPCTest {
     public void setUp() {
         NPCTroop.Builder builder = new NPCTroop.Builder();
 
+        CharacterActions actions = new CharacterActions(
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+        );
+
+        CharacterEffects effects = new CharacterEffects(
+                false,
+                false,
+                false,
+                false,
+                false
+        );
+
         TroopType pikemanType = new Pikeman();
 
         builder.withAlignmentType(AlignmentType.GOOD)
@@ -26,14 +45,14 @@ public class NPCTest {
                 .withDamageType(DamageType.PIERCING)
                 .withTroopXP(0)
                 .withRace(Races.HUMAN)
-                .withCanAttackAirUnits(false)
-                .withCanAttackGroundUnits(true)
                 .withStrength(3)
                 .withDexterity(3)
                 .withIntelligence(2)
                 .withCharisma(1)
                 .withTeamColor(TeamColors.RED)
                 .withNPCTroopType(pikemanType)
+                .withCharacterActions(actions)
+                .withCharacterEffects(effects)
             .build();
 
         NPCTroopFactory npcTroopFactory = new NPCTroopFactory();

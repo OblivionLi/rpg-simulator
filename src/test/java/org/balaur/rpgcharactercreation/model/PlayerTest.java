@@ -15,11 +15,32 @@ class PlayerTest {
     public void setUp() {
         PlayerHero.Builder builder = new PlayerHero.Builder();
 
+        CharacterActions actions = new CharacterActions(
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+        );
+
+        CharacterEffects effects = new CharacterEffects(
+                false,
+                false,
+                false,
+                false,
+                false
+        );
+
         builder.withName("Blaster")
                 .withAlignmentType(AlignmentType.GOOD)
                 .withRace(Races.HUMAN)
                 .withDamageType(DamageType.SLASHING)
-                .withColor(TeamColors.BLUE);
+                .withColor(TeamColors.BLUE)
+                .withCharacterActions(actions)
+                .withCharacterEffects(effects);
 
         PlayerFactory pf = new PlayerFactory();
 

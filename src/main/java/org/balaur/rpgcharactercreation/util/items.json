@@ -1,0 +1,121 @@
+{
+  "Helmet": [
+    {
+      "name": "Raven’s Shadow",
+      "quality": "Minor",
+      "description": "A helmet made from the feathers of a raven. It provides a slight boost to speed (+1)."
+    },
+    {
+      "name": "Titan’s Helm",
+      "quality": "Average",
+      "description": "A heavy helmet once worn by the Titans of old. It increases health (+2) and armor (+1)."
+    },
+    {
+      "name": "Crown of the Demon Lord",
+      "quality": "Legendary",
+      "description": "A crown said to have been worn by the demon lord himself. It greatly enhances combat abilities (+5), increases health (+5), and provides a special bonus of increased morale (+5)."
+    }
+  ],
+  "Necklace": [
+    {
+      "name": "Amulet of the Wind",
+      "quality": "Minor",
+      "description": "A light amulet that slightly increases speed (+1)."
+    },
+    {
+      "name": "Pendant of Vitality",
+      "quality": "Major",
+      "description": "A pendant that boosts health (+3), armor (+2), and lifeRegeneration (+2)."
+    },
+    {
+      "name": "Celestial Locket",
+      "quality": "Artifact",
+      "description": "A locket containing a piece of Celestia, providing a major boost to health (+4), armor (+4), mana (+4), and manaRegeneration (+4)."
+    }
+  ],
+  "Weapon": [
+    {
+      "name": "Iron Sword",
+      "quality": "Minor",
+      "description": "A basic sword that provides a small increase to combat (+1)."
+    },
+    {
+      "name": "Flamebrand",
+      "quality": "Average",
+      "description": "A sword imbued with fire, enhancing combat abilities (+2) and speed (+2)."
+    },
+    {
+      "name": "Demonbane",
+      "quality": "Legendary",
+      "description": "A sword said to have slain the demon lord, greatly boosting combat (+5), speed (+5), and provides a special bonus of increased command (+5)."
+    }
+  ],
+  "Body Armor": [
+    {
+      "name": "Leather Armor",
+      "quality": "Minor",
+      "description": "Basic armor that provides a slight increase to armor (+1)."
+    },
+    {
+      "name": "Chainmail of the Titans",
+      "quality": "Major",
+      "description": "Armor crafted in the style of the Titans, boosting health (+3), armor (+3), and resistance (+2)."
+    },
+    {
+      "name": "Celestial Robes",
+      "quality": "Artifact",
+      "description": "Robes woven from the fabric of Celestia itself, providing a major boost to health (+5), armor (+5), mana (+4), and manaRegeneration (+4)."
+    }
+  ],
+  "Leggings": [
+    {
+      "name": "Traveler’s Trousers",
+      "quality": "Minor",
+      "description": "Comfortable trousers that slightly increase speed (+1)."
+    },
+    {
+      "name": "Greaves of the Titans",
+      "quality": "Average",
+      "description": "Heavy greaves that increase health (+2) and armor (+1)."
+    },
+    {
+      "name": "Demon Lord’s Leggings",
+      "quality": "Legendary",
+      "description": "Leggings said to have been worn by the demon lord, greatly enhancing combat abilities (+5), health (+5), and provides a special bonus of increased training (+5)."
+    }
+  ],
+  "Boots": [
+    {
+      "name": "Boots of Swiftness",
+      "quality": "Minor",
+      "description": "Light boots that slightly increase speed (+1)."
+    },
+    {
+      "name": "Titan’s Sabatons",
+      "quality": "Major",
+      "description": "Heavy boots that boost health (+3), armor (+2), and speed (+2)."
+    },
+    {
+      "name": "Celestial Sandals",
+      "quality": "Artifact",
+      "description": "Sandals said to have been worn by the celestial beings, providing a major boost to speed (+5), command (+4), morale (+4), and magery (+4)."
+    }
+  ],
+  "Ring": [
+    {
+      "name": "Ring of Strength",
+      "quality": "Minor",
+      "description": "A simple ring that provides a small increase to combat (+1)."
+    },
+    {
+      "name": "Ring of the Titans",
+      "quality": "Average",
+      "description": "A ring crafted in the style of the Titans, boosting health (+2) and armor (+1)."
+    },
+    {
+      "name": "Celestial Band",
+      "quality": "Legendary",
+      "description": "A ring said to contain a piece of Celestia, greatly enhancing all stats (+5) and provides a special bonus of increased spellCastingChance (+5)."
+    }
+  ]
+}

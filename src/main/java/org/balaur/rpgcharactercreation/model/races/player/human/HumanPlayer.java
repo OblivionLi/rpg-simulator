@@ -21,6 +21,7 @@ public class HumanPlayer extends BaseTroop {
     private final float SPELL_CASTING_CHANCE_STARTING_VALUE = 10;
     private final int DISCOUNT_STARTING_VALUE = 0;
     private final int RETINUE_SLOTS_STARTING_VALUE = 2;
+    private final int VIEW_RANGE = 9;
 
     public HumanPlayer() {
         super.combat = COMBAT_STARTING_VALUE;
@@ -41,5 +42,6 @@ public class HumanPlayer extends BaseTroop {
         super.spellCastingChance = SPELL_CASTING_CHANCE_STARTING_VALUE;
         super.discount = DISCOUNT_STARTING_VALUE;
         super.retinueSlots = RETINUE_SLOTS_STARTING_VALUE;
+        super.viewRange = VIEW_RANGE;
     }
 }

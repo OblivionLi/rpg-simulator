@@ -1,6 +1,7 @@
 package org.balaur.rpgcharactercreation.model;
 
 import lombok.Getter;
+import lombok.Setter;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
 import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributes;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
@@ -20,11 +21,10 @@ public abstract class BaseCharacter implements RPGCharacter, GameEntity {
     private LevelingSystem levelingSystem;
     private DamageType damageType;
     private MainAttributes attributes;
-    private boolean canAttackGroundUnits = true;
-    private boolean canAttackAirUnits = true;
-    private boolean isStunned = false;
-    private boolean isBurning = false;
-    private boolean isFrozen = false;
+    @Setter
+    private CharacterActions actions;
+    @Setter
+    private CharacterEffects effects;
 
     private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(1);
 
@@ -34,11 +34,6 @@ public abstract class BaseCharacter implements RPGCharacter, GameEntity {
         this.levelingSystem = levelingSystem;
         this.damageType = damageType;
         this.attributes = attributes;
-    }
-
-    public void updateAllowedAttacks(boolean canAttackGroundUnits, boolean canAttackAirUnits) {
-        this.canAttackAirUnits = canAttackAirUnits;
-        this.canAttackGroundUnits = canAttackGroundUnits;
     }
 
     public String displayCharacterInfo(String race) {

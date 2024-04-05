@@ -103,11 +103,32 @@ public class CombatTest {
     private void buildHero() {
         PlayerHero.Builder builder = new PlayerHero.Builder();
 
+        CharacterActions actions = new CharacterActions(
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+        );
+
+        CharacterEffects effects = new CharacterEffects(
+                false,
+                false,
+                false,
+                false,
+                false
+        );
+
         builder.withName("Blaster")
                 .withAlignmentType(AlignmentType.GOOD)
                 .withRace(Races.HUMAN)
                 .withDamageType(DamageType.SLASHING)
-                .withColor(TeamColors.BLUE);
+                .withColor(TeamColors.BLUE)
+                .withCharacterEffects(effects)
+                .withCharacterActions(actions);
 
         PlayerFactory pf = new PlayerFactory();
 
@@ -116,6 +137,24 @@ public class CombatTest {
 
     private void buildTroop() {
         NPCTroop.Builder builder = new NPCTroop.Builder();
+        CharacterActions actions = new CharacterActions(
+                true,
+                true,
+                false,
+                false,
+                false,
+                false,
+                false,
+                false
+        );
+
+        CharacterEffects effects = new CharacterEffects(
+                false,
+                false,
+                false,
+                false,
+                false
+        );
 
         TroopType pikemanType = new Pikeman();
 
@@ -125,14 +164,14 @@ public class CombatTest {
                 .withDamageType(DamageType.PIERCING)
                 .withTroopXP(0)
                 .withRace(Races.HUMAN)
-                .withCanAttackAirUnits(false)
-                .withCanAttackGroundUnits(true)
                 .withStrength(3)
                 .withDexterity(3)
                 .withIntelligence(2)
                 .withCharisma(1)
                 .withTeamColor(TeamColors.RED)
                 .withNPCTroopType(pikemanType)
+                .withCharacterEffects(effects)
+                .withCharacterActions(actions)
                 .build();
 
         NPCTroopFactory npcTroopFactory = new NPCTroopFactory();

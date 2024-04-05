@@ -20,4 +20,5 @@ public interface TroopType {
     double getSpellCastingChance();
     double getDiscount();
     int getRetinueSlots();
+    int getViewRange();
 }

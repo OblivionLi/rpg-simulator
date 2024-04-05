@@ -2,11 +2,14 @@ package org.balaur.rpgcharactercreation.model.races.troops;
 
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.BaseCharacter;
+import org.balaur.rpgcharactercreation.model.CharacterActions;
+import org.balaur.rpgcharactercreation.model.CharacterEffects;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
 import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesType;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.balaur.rpgcharactercreation.model.races.GameEntity;
 import org.balaur.rpgcharactercreation.model.races.NPCRaceType;
+import org.balaur.rpgcharactercreation.model.races.PlayerHero;
 import org.balaur.rpgcharactercreation.util.*;
 
 @Getter
@@ -35,6 +38,9 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
         this.npcRaceType = builder.npcRaceType;
         this.race = builder.race;
         this.teamColor = builder.teamColor;
+
+        super.setActions(builder.actions);
+        super.setEffects(builder.effects);
     }
 
     @Override
@@ -96,10 +102,20 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
         private int intelligence;
         private int charisma;
         private Races race;
-        private boolean canAttackGroundUnits;
-        private boolean canAttackAirUnits;
         private TeamColors teamColor;
         private TroopType troopType;
+        private CharacterActions actions;
+        private CharacterEffects effects;
+
+        public Builder withCharacterEffects(CharacterEffects effects) {
+            this.effects = effects;
+            return this;
+        }
+
+        public Builder withCharacterActions(CharacterActions actions) {
+            this.actions = actions;
+            return this;
+        }
 
         public Builder withNPCTroopType(TroopType troopType) {
             this.troopType = troopType;
@@ -113,16 +129,6 @@ public class NPCTroop extends BaseCharacter implements NPCRaceType {
 
         public Builder withAlignmentType(AlignmentType alignmentType) {
             this.alignmentType = alignmentType;
-            return this;
-        }
-
-        public Builder withCanAttackGroundUnits(boolean canAttackGroundUnits) {
-            this.canAttackGroundUnits = canAttackGroundUnits;
-            return this;
-        }
-
-        public Builder withCanAttackAirUnits(boolean canAttackAirUnits) {
-            this.canAttackAirUnits = canAttackAirUnits;
             return this;
         }
 

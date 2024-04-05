@@ -22,4 +22,5 @@ public abstract class BasePlayer implements PlayerType {
     protected double spellCastingChance;
     protected double discount;
     protected int retinueSlots;
+    protected int viewRange;
 }

@@ -23,4 +23,5 @@ public abstract class BaseTroop implements TroopType {
     protected double discount;
     protected int retinueSlots;
     protected int troopXP;
+    protected int viewRange;
 }

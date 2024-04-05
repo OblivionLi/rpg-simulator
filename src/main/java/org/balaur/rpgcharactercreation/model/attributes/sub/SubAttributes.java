@@ -26,6 +26,7 @@ public class SubAttributes implements SubAttributesType {
     private double spellCastingChance;
     private double discount;
     private int retinueSlots;
+    private int viewRange;
 
     private Resistances resistances = new Resistances();
 
@@ -48,6 +49,7 @@ public class SubAttributes implements SubAttributesType {
         spellCastingChance = troop.getSpellCastingChance();
         discount = troop.getDiscount();
         retinueSlots = troop.getRetinueSlots();
+        viewRange = troop.getViewRange();
     }
 
     @Override

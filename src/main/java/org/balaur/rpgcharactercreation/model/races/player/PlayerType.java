@@ -19,4 +19,5 @@ public interface PlayerType {
     double getSpellCastingChance();
     double getDiscount();
     int getRetinueSlots();
+    int getViewRange();
 }
