@@ -17,6 +17,8 @@ public class RavenShadow extends BaseItemSlot implements BaseItem {
                 "helmet"
         );
 
+        addProperty("SPEED", 1);
+
         super.slotHeight = 2;
         super.slotWidth = 2;
     }

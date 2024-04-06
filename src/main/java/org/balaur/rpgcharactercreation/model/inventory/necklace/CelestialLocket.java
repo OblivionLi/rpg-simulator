@@ -7,11 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class CelestialLocket extends BaseItemSlot implements BaseItem {
-    private final int HEALTH = 70;
-    private final int ARMOR = 4;
-    private final int MANA = 14;
-    private final int MANA_REGENERATION = 4;
-
     public CelestialLocket() {
         super(
                 ItemQuality.ARTIFACT,
@@ -19,6 +14,11 @@ public class CelestialLocket extends BaseItemSlot implements BaseItem {
                 "A locket containing a piece of Celestia, providing a major boost to health, armor, mana and mana regeneration.",
                 "necklace"
         );
+
+        addProperty("MANA", 14);
+        addProperty("MANA_REGENERATION", 4);
+        addProperty("ARMOR", 4);
+        addProperty("HEALTH", 70);
 
         super.slotHeight = 1;
         super.slotWidth = 2;

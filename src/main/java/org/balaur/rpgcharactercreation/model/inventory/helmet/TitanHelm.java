@@ -7,9 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class TitanHelm extends BaseItemSlot implements BaseItem {
-    private final int HEALTH = 60;
-    private final int ARMOR = 3;
-
     public TitanHelm() {
         super(
                 ItemQuality.AVERAGE,
@@ -17,6 +14,9 @@ public class TitanHelm extends BaseItemSlot implements BaseItem {
                 "A heavily worn helmet, once adorned by the Titans of old. Despite its diminished state, it still offers slight increases to health and armor.",
                 "helmet"
         );
+
+        addProperty("SPEED", 3);
+        addProperty("HEALTH", 60);
 
         super.slotHeight = 2;
         super.slotWidth = 2;

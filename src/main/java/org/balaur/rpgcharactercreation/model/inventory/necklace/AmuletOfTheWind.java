@@ -7,8 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class AmuletOfTheWind extends BaseItemSlot implements BaseItem {
-    private final int SPEED = 1;
-
     public AmuletOfTheWind() {
         super(
                 ItemQuality.MINOR,
@@ -16,6 +14,8 @@ public class AmuletOfTheWind extends BaseItemSlot implements BaseItem {
                 "A light amulet that slightly increases speed.",
                 "necklace"
         );
+
+        addProperty("SPEED", 1);
 
         super.slotHeight = 1;
         super.slotWidth = 2;

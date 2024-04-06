@@ -7,10 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class PendantOfVitality extends BaseItemSlot implements BaseItem {
-    private final int HEALTH = 50;
-    private final int ARMOR = 4;
-    private final int LIFE_REGENERATION = 4;
-
     public PendantOfVitality() {
         super(
                 ItemQuality.MAJOR,
@@ -18,6 +14,10 @@ public class PendantOfVitality extends BaseItemSlot implements BaseItem {
                 "A pendant that boosts health, armor, and lifeRegeneration.",
                 "necklace"
         );
+
+        addProperty("LIFE_REGENERATION", 4);
+        addProperty("ARMOR", 4);
+        addProperty("HEALTH", 50);
 
         super.slotHeight = 1;
         super.slotWidth = 2;

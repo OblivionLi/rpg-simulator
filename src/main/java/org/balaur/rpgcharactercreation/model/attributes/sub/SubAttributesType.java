@@ -1,6 +1,9 @@
 package org.balaur.rpgcharactercreation.model.attributes.sub;
 
 import org.balaur.rpgcharactercreation.model.attributes.resistances.Resistances;
+import org.balaur.rpgcharactercreation.util.StatUpdateAction;
+
+import java.util.Map;
 
 public interface SubAttributesType {
     void increaseStatsOnLevelUp(int levels);
@@ -28,4 +31,5 @@ public interface SubAttributesType {
     double getDiscount();
     int getRetinueSlots();
 
+    void updateStatsBasedOnItem(Map<String, Integer> properties, StatUpdateAction action);
 }

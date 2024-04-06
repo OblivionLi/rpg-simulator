@@ -7,8 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class IronSword extends BaseItemSlot implements BaseItem {
-    private final int COMBAT = 3;
-
     public IronSword() {
         super(
                 ItemQuality.MINOR,
@@ -16,6 +14,8 @@ public class IronSword extends BaseItemSlot implements BaseItem {
                 "A basic sword that provides a small increase to combat.",
                 "weapon"
         );
+
+        addProperty("COMBAT", 3);
 
         super.slotHeight = 2;
         super.slotWidth = 1;

@@ -7,8 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class LeatherArmor extends BaseItemSlot implements BaseItem {
-    private final int ARMOR = 3;
-
     public LeatherArmor() {
         super(
                 ItemQuality.MINOR,
@@ -16,6 +14,8 @@ public class LeatherArmor extends BaseItemSlot implements BaseItem {
                 "Basic armor that provides a slight increase to armor.",
                 "body"
         );
+
+        addProperty("ARMOR", 3);
 
         super.slotHeight = 2;
         super.slotWidth = 2;

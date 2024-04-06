@@ -3,7 +3,12 @@ package org.balaur.rpgcharactercreation.model.inventory.base;
 import lombok.Getter;
 import org.balaur.rpgcharactercreation.util.ItemQuality;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public abstract class BaseItemSlot {
+    @Getter
+    private final Map<String, Integer> properties = new HashMap<String, Integer>();
     @Getter
     protected ItemQuality itemQuality;
     @Getter
@@ -25,5 +30,13 @@ public abstract class BaseItemSlot {
 
     public int[] getItemSize() {
         return new int[]{slotWidth, slotHeight};
+    }
+
+    public void addProperty(String propertyName, int value) {
+        properties.put(propertyName, value);
+    }
+
+    public Integer getProperty(String propertyName) {
+        return properties.get(propertyName);
     }
 }

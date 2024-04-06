@@ -7,10 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class CrownOfTheDemonLord extends BaseItemSlot implements BaseItem {
-    private final int COMBAT = 10;
-    private final int HEALTH = 100;
-    private final int MORALE = 5;
-
     public CrownOfTheDemonLord() {
         super(
                 ItemQuality.LEGENDARY,
@@ -18,6 +14,10 @@ public class CrownOfTheDemonLord extends BaseItemSlot implements BaseItem {
                 "A crown said to have been worn by the demon lord himself. It greatly enhances combat abilities, increases health, and provides a special bonus of increased morale.",
                 "helmet"
         );
+
+        addProperty("COMBAT", 10);
+        addProperty("HEALTH", 100);
+        addProperty("MORALE", 5);
 
         super.slotHeight = 2;
         super.slotWidth = 2;

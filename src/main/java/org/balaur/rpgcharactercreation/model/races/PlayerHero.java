@@ -6,6 +6,8 @@ import org.balaur.rpgcharactercreation.model.CharacterActions;
 import org.balaur.rpgcharactercreation.model.CharacterEffects;
 import org.balaur.rpgcharactercreation.model.attributes.main.MainAttributes;
 import org.balaur.rpgcharactercreation.model.attributes.sub.SubAttributesType;
+import org.balaur.rpgcharactercreation.model.inventory.HeroInventory;
+import org.balaur.rpgcharactercreation.model.inventory.base.BaseItemSlot;
 import org.balaur.rpgcharactercreation.model.leveling.LevelingSystem;
 import org.balaur.rpgcharactercreation.model.races.troops.TroopType;
 import org.balaur.rpgcharactercreation.util.*;
@@ -14,6 +16,7 @@ import org.balaur.rpgcharactercreation.util.*;
 public class PlayerHero extends BaseCharacter {
     private Races race;
     private TeamColors teamColor;
+    private HeroInventory inventory = new HeroInventory();
 
     public PlayerHero(Builder builder) {
         super(
@@ -35,6 +38,24 @@ public class PlayerHero extends BaseCharacter {
 
         super.setActions(builder.actions);
         super.setEffects(builder.effects);
+    }
+
+    public void equipItem(BaseItemSlot item) {
+        inventory.equip(item);
+        super.getAttributes().getSubAttributes().updateStatsBasedOnItem(item.getProperties(), StatUpdateAction.INCREASE);
+    }
+
+    public void unequipItem(BaseItemSlot item) {
+        inventory.unequip(item);
+        super.getAttributes().getSubAttributes().updateStatsBasedOnItem(item.getProperties(), StatUpdateAction.DECREASE);
+    }
+
+    public void storeItemInInventoryBag(BaseItemSlot item) {
+        inventory.getInventory().addItem(item);
+    }
+
+    public void dropItemFromInventoryBag(BaseItemSlot item) {
+        inventory.getInventory().removeItem(item);
     }
 
     public String displayCharacterInfo() {

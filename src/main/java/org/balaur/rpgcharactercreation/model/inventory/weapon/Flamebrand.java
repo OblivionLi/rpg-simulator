@@ -7,9 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class Flamebrand extends BaseItemSlot implements BaseItem {
-    private final int COMBAT = 3;
-    private final int SPEED = 2;
-
     public Flamebrand() {
         super(
                 ItemQuality.AVERAGE,
@@ -17,6 +14,9 @@ public class Flamebrand extends BaseItemSlot implements BaseItem {
                 "A sword imbued with fire, enhancing combat abilities and speed.",
                 "weapon"
         );
+
+        addProperty("COMBAT", 3);
+        addProperty("SPEED", 2);
 
         super.slotHeight = 2;
         super.slotWidth = 1;

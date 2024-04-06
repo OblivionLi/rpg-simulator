@@ -4,6 +4,9 @@ import lombok.Getter;
 import org.balaur.rpgcharactercreation.model.attributes.resistances.Resistances;
 import org.balaur.rpgcharactercreation.model.races.troops.TroopType;
 import org.balaur.rpgcharactercreation.util.AttributesConsts;
+import org.balaur.rpgcharactercreation.util.StatUpdateAction;
+
+import java.util.Map;
 
 @Getter
 public class SubAttributes implements SubAttributesType {
@@ -178,6 +181,34 @@ public class SubAttributes implements SubAttributesType {
 
     public SubAttributes display() {
         return this;
+    }
+
+    @Override
+    public void updateStatsBasedOnItem(Map<String, Integer> itemProperties, StatUpdateAction action) {
+        for (Map.Entry<String, Integer> entry : itemProperties.entrySet()) {
+            String propertyName = entry.getKey();
+            int propertyValue = entry.getValue();
+
+            if (action == StatUpdateAction.DECREASE) {
+                propertyValue *= -1;
+            }
+
+            switch (propertyName) {
+                case "HEALTH" -> this.health += propertyValue;
+                case "ARMOR" -> this.armor += propertyValue;
+                case "MANA" -> this.mana += propertyValue;
+                case "MANA_REGENERATION" -> this.manaRegeneration += propertyValue;
+                case "RESISTANCE" -> this.resistance += propertyValue;
+                case "SPEED" -> this.speed += propertyValue;
+                case "COMMAND" -> this.command += propertyValue;
+                case "MORALE" -> this.morale += propertyValue;
+                case "MAGERY" -> this.magery += propertyValue;
+                case "COMBAT" -> this.combat += propertyValue;
+                case "TRAINING" -> this.training += propertyValue;
+                case "LIFE_REGENERATION" -> this.lifeRegeneration += propertyValue;
+                case "SPELL_CASTING_CHANCE" -> this.spellCastingChance += propertyValue;
+            }
+        }
     }
 
     @Override

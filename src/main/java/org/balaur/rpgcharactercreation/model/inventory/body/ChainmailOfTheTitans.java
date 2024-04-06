@@ -7,10 +7,6 @@ import org.balaur.rpgcharactercreation.util.ItemQuality;
 
 @Getter
 public class ChainmailOfTheTitans extends BaseItemSlot implements BaseItem {
-    private final int HEALTH = 60;
-    private final int ARMOR = 3;
-    private final int RESISTANCE = 3;
-
     public ChainmailOfTheTitans() {
         super(
                 ItemQuality.MAJOR,
@@ -18,6 +14,10 @@ public class ChainmailOfTheTitans extends BaseItemSlot implements BaseItem {
                 "Armor crafted in the style of the Titans, boosting health , armor and resistance.",
                 "body"
         );
+
+        addProperty("HEALTH", 60);
+        addProperty("ARMOR", 3);
+        addProperty("RESISTANCE", 3);
 
         super.slotHeight = 2;
         super.slotWidth = 2;
