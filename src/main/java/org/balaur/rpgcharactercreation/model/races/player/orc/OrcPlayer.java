@@ -1,11 +1,11 @@
-package org.balaur.rpgcharactercreation.model.races.player.human;
+package org.balaur.rpgcharactercreation.model.races.player.orc;
 
 import org.balaur.rpgcharactercreation.model.races.builder.Builder;
 import org.balaur.rpgcharactercreation.model.races.troops.BaseTroop;
 
-public class HumanPlayer extends BaseTroop implements Builder {
-    private final int COMBAT_STARTING_VALUE = 10;
-    private final int HEALTH_STARTING_VALUE = 120;
+public class OrcPlayer extends BaseTroop implements Builder {
+    private final int COMBAT_STARTING_VALUE = 12;
+    private final int HEALTH_STARTING_VALUE = 130;
     private final int SPEED_STARTING_VALUE = 9;
     private final int COMMAND_STARTING_VALUE = 1;
     private final int MORALE_STARTING_VALUE = 1;
@@ -24,7 +24,7 @@ public class HumanPlayer extends BaseTroop implements Builder {
     private final int RETINUE_SLOTS_STARTING_VALUE = 2;
     private final int VIEW_RANGE = 9;
 
-    public HumanPlayer() {
+    public OrcPlayer() {
         super.combat = COMBAT_STARTING_VALUE;
         super.health = HEALTH_STARTING_VALUE;
         super.speed = SPEED_STARTING_VALUE;
