@@ -1,7 +1,7 @@
 package org.balaur.rpgcharactercreation.util;
 
 public enum IllnessType {
-    POISON,
+    POISON, //
     DISEASE;
 
     public static IllnessType fromString(String illness) {
